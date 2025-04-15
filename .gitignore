@@ -1,2 +1,9 @@
 db/data
 *.env
+QuickMarkWeb/QuickMarkWeb.Server/bin
+QuickMarkWeb/QuickMarkWeb.Server/obj
+QuickMarkWeb/QuickMarkWeb.Server/.vs
+QuickMarkWeb/QuickMarkWeb.Server/*.user
+QuickMarkWeb/QuickMarkWeb.Server/*.suo
+QuickMarkWeb/QuickMarkWeb.Server/*.cache
+QuickMarkWeb/QuickMarkWeb.Server/*.swp

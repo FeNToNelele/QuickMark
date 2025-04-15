@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "quickmarkweb.client", "quickmarkweb.client\quickmarkweb.client.esproj", "{2DC4A559-CC06-D62A-811F-57FC9BF90011}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickMarkWeb.Server", "QuickMarkWeb.Server\QuickMarkWeb.Server.csproj", "{549EE7D0-EA38-45BA-8C02-371A46A4C998}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DC4A559-CC06-D62A-811F-57FC9BF90011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC4A559-CC06-D62A-811F-57FC9BF90011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC4A559-CC06-D62A-811F-57FC9BF90011}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2DC4A559-CC06-D62A-811F-57FC9BF90011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC4A559-CC06-D62A-811F-57FC9BF90011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC4A559-CC06-D62A-811F-57FC9BF90011}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{549EE7D0-EA38-45BA-8C02-371A46A4C998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549EE7D0-EA38-45BA-8C02-371A46A4C998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549EE7D0-EA38-45BA-8C02-371A46A4C998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549EE7D0-EA38-45BA-8C02-371A46A4C998}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {975B5C2D-2909-4067-B70D-848FD508EBD6}
+	EndGlobalSection
+EndGlobal
