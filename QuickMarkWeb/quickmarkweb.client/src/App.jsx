@@ -5,6 +5,7 @@ import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 import Admin from './pages/Admin';
+import Courses from './pages/Courses';
 import Dashboard from './pages/Dashboard';
 import Examiners from './pages/Examiners';
 import Login from './pages/Login';
@@ -78,7 +79,7 @@ function App() {
                             path="/manage-courses"
                             element={
                                 <ProtectedRoute>
-                                    <div>Manage Courses (Placeholder)</div>
+                                    <Courses />
                                 </ProtectedRoute>
                             }
                         />
