@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/contexts/AuthContext";
 import React, { useState } from 'react';
 
 function Login() {
     const [neptun, setNeptun] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-
+    const { login } = useAuth();
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -15,9 +16,11 @@ function Login() {
             return;
         }
 
-        // Simulate login
+        // FIXME replace with actual login logic
         console.log('Logging in...');
         setError('');
+        login("dummyToken")
+        
         window.location.href = '/dashboard';
     };
 
