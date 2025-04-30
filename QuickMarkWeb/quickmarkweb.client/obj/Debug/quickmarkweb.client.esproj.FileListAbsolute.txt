@@ -1,1 +1,3 @@
 D:\Programozas\DE\Szoftvertervezes\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
+D:\Dokumentumok\School\Egyetem MSC\Szoftverrendszerek tervezése\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
+C:\Users\Hp\Desktop\quickmark\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
