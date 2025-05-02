@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS "user" (
     username VARCHAR PRIMARY KEY,
     full_name VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
+    salt BYTEA NOT NULL,
     is_admin BOOLEAN NOT NULL
 );
 
