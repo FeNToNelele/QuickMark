@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using QuickMarkWeb.Server.Data;
@@ -11,9 +12,11 @@ using QuickMarkWeb.Server.Data;
 namespace QuickMarkWeb.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250502091231_CorrectLimitToString")]
+    partial class CorrectLimitToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +65,6 @@ namespace QuickMarkWeb.Server.Migrations
                     b.Property<int>("QuestionAmount")
                         .HasColumnType("integer");
 
-                    b.Property<int>("QuestionnaireId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("UserUsername")
                         .IsRequired()
                         .HasColumnType("text");
@@ -72,9 +72,6 @@ namespace QuickMarkWeb.Server.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("QuestionnaireId")
-                        .IsUnique();
 
                     b.HasIndex("UserUsername");
 
@@ -137,6 +134,8 @@ namespace QuickMarkWeb.Server.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ExamId");
+
                     b.ToTable("Questionnaires");
                 });
 
@@ -173,12 +172,6 @@ namespace QuickMarkWeb.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("QuickMarkWeb.Server.Models.Questionnaire", "Questionnaire")
-                        .WithOne("Exam")
-                        .HasForeignKey("QuickMarkWeb.Server.Models.Exam", "QuestionnaireId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("QuickMarkWeb.Server.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserUsername")
@@ -186,8 +179,6 @@ namespace QuickMarkWeb.Server.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
-
-                    b.Navigation("Questionnaire");
 
                     b.Navigation("User");
                 });
@@ -213,8 +204,13 @@ namespace QuickMarkWeb.Server.Migrations
 
             modelBuilder.Entity("QuickMarkWeb.Server.Models.Questionnaire", b =>
                 {
-                    b.Navigation("Exam")
+                    b.HasOne("QuickMarkWeb.Server.Models.Exam", "Exam")
+                        .WithMany()
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Exam");
                 });
 #pragma warning restore 612, 618
         }
