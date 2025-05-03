@@ -8,6 +8,7 @@ import Admin from './pages/Admin';
 import Courses from './pages/Courses';
 import Dashboard from './pages/Dashboard';
 import Examiners from './pages/Examiners';
+import Exams from './pages/Exams';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 
@@ -63,7 +64,7 @@ function App() {
                             path="/manage-exams"
                             element={
                                 <ProtectedRoute>
-                                    <div>Manage Exams (Placeholder)</div>
+                                    <Exams />
                                 </ProtectedRoute>
                             }
                         />
