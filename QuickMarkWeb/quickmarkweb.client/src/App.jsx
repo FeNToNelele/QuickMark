@@ -3,6 +3,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';
+import { Toaster } from './components/ui/sonner';
 import { AuthProvider } from './contexts/AuthContext';
 import Admin from './pages/Admin';
 import Courses from './pages/Courses';
@@ -92,7 +93,7 @@ function App() {
                 </main>
                 <Footer />
                 </div>
-
+                <Toaster/>
             </Router>
         </AuthProvider>
     );
