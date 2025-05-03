@@ -10,6 +10,7 @@ import Courses from './pages/Courses';
 import Dashboard from './pages/Dashboard';
 import Examiners from './pages/Examiners';
 import Exams from './pages/Exams';
+import GenerateExamSheets from './pages/GenerateExamSheet';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 
@@ -49,7 +50,7 @@ function App() {
                             path="/generate-exam-sheets"
                             element={
                                 <ProtectedRoute>
-                                    <div>Generate Exam Sheets Page (Placeholder)</div>
+                                    <GenerateExamSheets />
                                 </ProtectedRoute>
                             }
                         />
