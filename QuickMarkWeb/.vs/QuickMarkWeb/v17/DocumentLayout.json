@@ -1,30 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\",
+  "WorkspaceRootPath": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\models\\questionnaire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\models\\questionnaire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\quickmarkweb.server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\quickmarkweb.server.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\models\\examresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\models\\examresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,79 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "package.json",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\package.json",
-              "RelativeDocumentMoniker": "quickmarkweb.client\\package.json",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\package.json",
-              "RelativeToolTip": "quickmarkweb.client\\package.json",
+              "Title": "Questionnaire.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Questionnaire.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Models\\Questionnaire.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Questionnaire.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Models\\Questionnaire.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-13T16:57:55.474Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "QuickMarkWeb.Server.http",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\QuickMarkWeb.Server.http",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\QuickMarkWeb.Server.http",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\QuickMarkWeb.Server.http",
-              "RelativeToolTip": "QuickMarkWeb.Server\\QuickMarkWeb.Server.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-04-13T16:54:46.09Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Exam.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Exam.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Models\\Exam.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Exam.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Models\\Exam.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T16:02:06.515Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Data\\AppDbContext.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T15:48:03.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Program.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Program.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAA8AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T15:47:22.508Z",
+              "WhenOpened": "2025-05-02T10:36:07.978Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\appsettings.json",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\appsettings.json",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\appsettings.json",
-              "RelativeToolTip": "QuickMarkWeb.Server\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-13T15:23:41.675Z",
+              "Title": "ExamResult.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\ExamResult.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Models\\ExamResult.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\ExamResult.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Models\\ExamResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T09:40:24.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Exam.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Exam.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Models\\Exam.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Exam.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Models\\Exam.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wBMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T16:02:06.515Z",
               "EditorCaption": ""
             }
           ]

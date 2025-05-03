@@ -15,8 +15,13 @@ namespace QuickMarkWeb.Server.Models
         public User User { get; set; }
 
         public DateTime HeldAt { get; set; }
+
+        [ForeignKey("Questionnaire")]
+        public int QuestionnaireId { get; set; }
+        public Questionnaire Questionnaire { get; set; }
+
         public int QuestionAmount { get; set; }
-        public int CorrectLimit { get; set; }
+        public string CorrectLimit { get; set; } //if regular exam, multiple limits separated by comma
         public string AppliedStudents { get; set; }
     }
 }

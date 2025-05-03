@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS "user" (
     username VARCHAR PRIMARY KEY,
     full_name VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
+    salt BYTEA NOT NULL,
     is_admin BOOLEAN NOT NULL
 );
 
@@ -15,16 +16,15 @@ CREATE TABLE IF NOT EXISTS exam (
     course_id VARCHAR NOT NULL REFERENCES course(code),
     user_username VARCHAR NOT NULL REFERENCES "user"(username),
     held_at TIMESTAMP,
+	questionnaire_id INTEGER NOT NULL REFERENCES questionnaire(id)
     question_amount INTEGER NOT NULL,
-    correct_limit INTEGER NOT NULL,
+    correct_limit VARCHAR NOT NULL,
     applied_students TEXT,
-    CONSTRAINT valid_question_amount CHECK (question_amount > 0),
-    CONSTRAINT valid_correct_limit CHECK (correct_limit > 0 AND correct_limit <= question_amount)
+    CONSTRAINT valid_question_amount CHECK (question_amount > 0)
 );
 
 CREATE TABLE IF NOT EXISTS questionnaire (
     id SERIAL PRIMARY KEY,
-    exam_id INTEGER NOT NULL REFERENCES exam(id),
     gift_file TEXT,
     answers TEXT,
     course_code VARCHAR NOT NULL REFERENCES course(code)
