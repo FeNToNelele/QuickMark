@@ -17,11 +17,6 @@ function Header() {
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink href="/admin" className="text-white hover:text-gray-300">
-                            Admin
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
                         <NavigationMenuLink href="/login" className="text-white hover:text-gray-300">
                             Logout
                         </NavigationMenuLink>

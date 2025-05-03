@@ -5,7 +5,6 @@ import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Toaster } from './components/ui/sonner';
 import { AuthProvider } from './contexts/AuthContext';
-import Admin from './pages/Admin';
 import Courses from './pages/Courses';
 import Dashboard from './pages/Dashboard';
 import Examiners from './pages/Examiners';
@@ -39,26 +38,10 @@ function App() {
                             }
                         />
                         <Route
-                            path="/upload-question-bank"
-                            element={
-                                <ProtectedRoute>
-                                    <div>Upload Question Bank Page (Placeholder)</div>
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
                             path="/generate-exam-sheets"
                             element={
                                 <ProtectedRoute>
                                     <GenerateExamSheets />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/view-results"
-                            element={
-                                <ProtectedRoute>
-                                    <div>View Exam Results Page (Placeholder)</div>
                                 </ProtectedRoute>
                             }
                         />

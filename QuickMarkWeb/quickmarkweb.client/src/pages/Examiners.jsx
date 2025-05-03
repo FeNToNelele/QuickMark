@@ -1,8 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
+const examinerSchema = z.object({
+  neptun: z
+    .string()
+    .min(6, { message: "Neptun code must be 6 characters long." })
+    .max(6, { message: "Neptun code must be 6 characters long." }),
+  fullName: z.string().min(1, { message: "Full name is required." }),
+  password: z.string().min(6, { message: "Password must be at least 6 characters long." }).optional(),
+});
 
 const Examiners = () => {
   const [examiners, setExaminers] = useState([
@@ -10,51 +24,55 @@ const Examiners = () => {
     { neptun: "DEF456", fullName: "Jane Smith" },
   ]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [formData, setFormData] = useState({ neptun: "", fullName: "", password: "" });
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedExaminer, setSelectedExaminer] = useState(null);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const form = useForm({
+    resolver: zodResolver(examinerSchema),
+    defaultValues: {
+      neptun: "",
+      fullName: "",
+      password: "",
+    },
+  });
 
-  const handleAddOrEdit = () => {
-    if (isEditing) {
-      setExaminers((prev) =>
-        prev.map((examiner) =>
-          examiner.neptun === formData.neptun ? { ...examiner, fullName: formData.fullName } : examiner
-        )
-      );
-    } else {
-      setExaminers((prev) => [...prev, { neptun: formData.neptun, fullName: formData.fullName }]);
-    }
-    setIsDialogOpen(false);
-    setFormData({ neptun: "", fullName: "", password: "" });
-    setIsEditing(false);
-  };
-
-  const handleDelete = (neptun) => {
-    setExaminers((prev) => prev.filter((examiner) => examiner.neptun !== neptun));
-  };
-
-  const openEditDialog = (examiner) => {
-    setFormData({ ...examiner, password: "" });
-    setIsEditing(true);
+  const openDialog = (examiner = null) => {
+    setIsEditing(!!examiner);
+    setSelectedExaminer(examiner);
+    form.reset(examiner || {});
     setIsDialogOpen(true);
   };
 
   const closeDialog = () => {
     setIsDialogOpen(false);
-    setFormData({ neptun: "", fullName: "", password: "" });
-    setIsEditing(false);
-  }
+    setSelectedExaminer(null);
+    form.reset();
+  };
 
-  // TODO: Implement fetching of actual examiners from the backend.
-  // FIXME: Add validation to fields
+  const handleSave = (data) => {
+    if (isEditing) {
+      setExaminers((prev) =>
+        prev.map((examiner) =>
+          examiner.neptun === selectedExaminer.neptun ? { ...examiner, ...data } : examiner
+        )
+      );
+      toast("Examiner updated successfully!");
+    } else {
+      setExaminers((prev) => [...prev, data]);
+      toast("Examiner added successfully!");
+    }
+    closeDialog();
+  };
+
+  const handleDelete = (neptun) => {
+    setExaminers((prev) => prev.filter((examiner) => examiner.neptun !== neptun));
+    toast("Examiner deleted successfully!");
+  };
+
   return (
     <div className="p-6">
       <h1 className="heading-primary">Examiners Management</h1>
-      <Button onClick={() => setIsDialogOpen(true)} className="mb-4">
+      <Button onClick={() => openDialog()} className="mb-4">
         Add Examiner
       </Button>
       <Table>
@@ -71,7 +89,7 @@ const Examiners = () => {
               <TableCell>{examiner.neptun}</TableCell>
               <TableCell>{examiner.fullName}</TableCell>
               <TableCell>
-                <Button variant="outline" onClick={() => openEditDialog(examiner)} className="mr-2">
+                <Button variant="outline" onClick={() => openDialog(examiner)} className="mr-2">
                   Edit
                 </Button>
                 <Button variant="destructive" onClick={() => handleDelete(examiner.neptun)}>
@@ -84,45 +102,61 @@ const Examiners = () => {
       </Table>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent aria-describedby="dialog-description" >
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>{isEditing ? "Edit Examiner" : "Add Examiner"}</DialogTitle>
           </DialogHeader>
-          <p id="dialog-description" className="text-sm text-muted-foreground">
-            {isEditing
-              ? "Edit the details of the selected examiner."
-              : "Fill in the details to add a new examiner."}
-          </p>
-          <div className="space-y-4">
-            <Input
-              name="neptun"
-              placeholder="Neptun Code"
-              value={formData.neptun}
-              onChange={handleInputChange}
-              disabled={isEditing}
-            />
-            <Input
-              name="fullName"
-              placeholder="Full Name"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            />
-            {!isEditing && (
-              <Input
-                name="password"
-                type="password"
-                placeholder="Initial Password"
-                value={formData.password}
-                onChange={handleInputChange}
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleSave)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="neptun"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Neptun Code</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Enter Neptun Code" disabled={isEditing} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            )}
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => closeDialog()}>
-              Cancel
-            </Button>
-            <Button onClick={handleAddOrEdit}>{isEditing ? "Save Changes" : "Add Examiner"}</Button>
-          </DialogFooter>
+              <FormField
+                control={form.control}
+                name="fullName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="Enter Full Name" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {!isEditing && (
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Initial Password</FormLabel>
+                      <FormControl>
+                        <Input {...field} type="password" placeholder="Enter Initial Password" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              <DialogFooter>
+                <Button variant="outline" onClick={closeDialog}>
+                  Cancel
+                </Button>
+                <Button type="submit">{isEditing ? "Save Changes" : "Add Examiner"}</Button>
+              </DialogFooter>
+            </form>
+          </Form>
         </DialogContent>
       </Dialog>
     </div>

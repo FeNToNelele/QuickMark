@@ -15,22 +15,6 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Upload Question Bank</CardTitle>
-            <CardDescription>
-              Upload GIFT format question banks for your exams.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>Prepare your exams by uploading question banks.</p>
-          </CardContent>
-          <CardFooter className="flex justify-end">
-            <Button onClick={() => window.location.href = "/upload-question-bank"}>
-              Upload
-            </Button>
-          </CardFooter>
-        </Card>
 
         <Card>
           <CardHeader>
@@ -45,23 +29,6 @@ const Dashboard = () => {
           <CardFooter className="flex justify-end">
             <Button onClick={() => window.location.href = "/generate-exam-sheets"}>
               Generate
-            </Button>
-          </CardFooter>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>View Exam Results</CardTitle>
-            <CardDescription>
-              Review and analyze the results of submitted exams.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p>Access detailed results and performance metrics.</p>
-          </CardContent>
-          <CardFooter className="flex justify-end">
-            <Button onClick={() => window.location.href = "/view-results"}>
-              View Results
             </Button>
           </CardFooter>
         </Card>
