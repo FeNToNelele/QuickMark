@@ -14,5 +14,8 @@ namespace QuickMarkWeb.Server.Models
         [Required]
         public byte[] Salt { get; set; }
         public bool IsAdmin { get; set; }
+
+        public List<Exam> Exams { get; set; }
+        public List<ExamResult> ExamResults { get; set; }
     }
 }

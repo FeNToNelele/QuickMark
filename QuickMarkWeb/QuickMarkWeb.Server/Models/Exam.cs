@@ -7,7 +7,7 @@ namespace QuickMarkWeb.Server.Models
         public int Id { get; set; }
 
         [ForeignKey("Course")]
-        public string CourseId { get; set; }
+        public string CourseCode { get; set; }
         public Course Course { get; set; }
 
         [ForeignKey("User")]
@@ -23,5 +23,7 @@ namespace QuickMarkWeb.Server.Models
         public int QuestionAmount { get; set; }
         public string CorrectLimit { get; set; } //if regular exam, multiple limits separated by comma
         public string AppliedStudents { get; set; }
+
+        public List<ExamResult> ExamResults { get; set; }
     }
 }

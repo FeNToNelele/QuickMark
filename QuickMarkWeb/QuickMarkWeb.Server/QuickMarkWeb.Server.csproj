@@ -32,6 +32,7 @@
     <ProjectReference Include="..\quickmarkweb.client\quickmarkweb.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\QuickMarkWeb.Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

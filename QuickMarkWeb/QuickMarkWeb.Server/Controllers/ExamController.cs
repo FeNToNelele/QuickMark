@@ -52,7 +52,7 @@ namespace QuickMarkWeb.Server.Controllers
         {
             var exam = new Exam
             {
-                CourseId = newExam.CourseId,
+                CourseCode = newExam.CourseCode,
                 UserUsername = newExam.UserUsername,
                 HeldAt = newExam.HeldAt,
                 QuestionAmount = newExam.QuestionAmount,
@@ -72,7 +72,7 @@ namespace QuickMarkWeb.Server.Controllers
             var exam = await _context.Exams.FindAsync(id);
             if (exam == null) return NotFound();
 
-            exam.CourseId = editedExam.CourseId;
+            exam.CourseCode = editedExam.CourseCode;
             exam.HeldAt = editedExam.HeldAt;
             exam.QuestionAmount = editedExam.QuestionAmount;
             exam.CorrectLimit = editedExam.CorrectLimit;

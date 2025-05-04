@@ -16,15 +16,38 @@ namespace QuickMarkWeb.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Course>().HasKey(c => c.Code);
+            modelBuilder.Entity<User>().HasKey(u => u.Username);
+
+            modelBuilder.Entity<Questionnaire>()
+                .HasOne(q => q.Course)
+                .WithMany(c => c.Questionnaires)
+                .HasForeignKey(q => q.CourseCode);
+
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.Course)
-                .WithMany()
-                .HasForeignKey(e => e.CourseId);
+                .WithMany(c => c.Exams)
+                .HasForeignKey(e => e.CourseCode);
 
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.User)
-                .WithMany()
+                .WithMany(u => u.Exams)
                 .HasForeignKey(e => e.UserUsername);
+
+            modelBuilder.Entity<Exam>()
+                .HasOne(e => e.Questionnaire)
+                .WithMany(q => q.Exams)
+                .HasForeignKey(q => q.QuestionnaireId);
+
+            modelBuilder.Entity<ExamResult>()
+                .HasOne(er => er.Exam)
+                .WithMany(e => e.ExamResults)
+                .HasForeignKey(er => er.ExamId);
+
+            modelBuilder.Entity<ExamResult>()
+                .HasOne(er => er.User)
+                .WithMany(u => u.ExamResults)
+                .HasForeignKey(er => er.UserUsername);
         }
     }
 }
