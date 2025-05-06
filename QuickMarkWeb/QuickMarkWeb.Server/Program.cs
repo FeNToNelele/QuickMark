@@ -22,7 +22,10 @@ app.UseStaticFiles();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("swagger/v1/swagger.json", "API Doc");
+    });
 }
 
 app.UseHttpsRedirection();

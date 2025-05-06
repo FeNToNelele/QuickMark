@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using QuickMarkWeb.Server.Data;
 using QuickMarkWeb.Server.Models;
+using Shared.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -26,7 +27,7 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] User user)
+        public async Task<IActionResult> Register([FromBody] UserDTO user)
         {
             if (string.IsNullOrEmpty(user.Username))
                 return BadRequest("Username is required");
@@ -71,7 +72,7 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User loginRequest)
+        public async Task<IActionResult> Login([FromBody] UserDTO loginRequest)
         {
             var user = await _context.Users.FindAsync(loginRequest.Username);
 

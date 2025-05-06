@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuickMarkWeb.Server.Data;
 using QuickMarkWeb.Server.Models;
+using Shared.Exam;
+using QuickMarkWeb.Server.Helper;
 
 namespace QuickMarkWeb.Server.Controllers
 {
@@ -21,9 +23,15 @@ namespace QuickMarkWeb.Server.Controllers
         [HttpGet("exams")]
         public IActionResult GetAllExams()
         {
+            var currentUser = User.Identity.Name;
+
+            //QoL: Location of exam would be nice in production
+
             var exams = _context.Exams
+                .Where(e => e.UserUsername == currentUser)
+                .Include(e => e.Id)
                 .Include(e => e.Course)
-                .Include(e => e.User)
+                .Include(e => e.HeldAt)
                 .ToList();
 
             return Ok(exams);
@@ -39,26 +47,21 @@ namespace QuickMarkWeb.Server.Controllers
         {
             //QoL: identifier name would be better
 
-            var questionnaires = _context.Questionnaires
-                .Include(q => q.Id)
-                .Include(q => q.CourseCode).ToList();
+            var questionnaires = _context.Questionnaires.ToListAsync();
 
             return Ok(questionnaires);
         }
 
 
         [HttpPost("add/exam")]
-        public async Task<IActionResult> AddExam([FromBody] Exam newExam)
+        public async Task<IActionResult> AddExam([FromBody] ExamDTO newExamDTO)
         {
-            var exam = new Exam
+            if (newExamDTO.CourseCode != newExamDTO.Questionnaire.CourseCode)
             {
-                CourseCode = newExam.CourseCode,
-                UserUsername = newExam.UserUsername,
-                HeldAt = newExam.HeldAt,
-                QuestionAmount = newExam.QuestionAmount,
-                CorrectLimit = newExam.CorrectLimit, //if regular exam, multiple limits separated by comma
-                AppliedStudents = newExam.AppliedStudents
-            };
+                return BadRequest("Course code for new exam and its questionnaire must be the same.");
+            }
+
+            Exam exam = newExamDTO.ToExamModel();
 
             _context.Exams.Add(exam);
             await _context.SaveChangesAsync();
@@ -67,9 +70,9 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPut("edit/exam/{id}")]
-        public async Task<IActionResult> EditExam(int id, [FromBody] Exam editedExam)
+        public async Task<IActionResult> EditExam([FromBody] ExamDTO editedExam)
         {
-            var exam = await _context.Exams.FindAsync(id);
+            var exam = await _context.Exams.FindAsync(editedExam.Id);
             if (exam == null) return NotFound();
 
             exam.CourseCode = editedExam.CourseCode;
@@ -77,9 +80,23 @@ namespace QuickMarkWeb.Server.Controllers
             exam.QuestionAmount = editedExam.QuestionAmount;
             exam.CorrectLimit = editedExam.CorrectLimit;
             exam.AppliedStudents = editedExam.AppliedStudents;
+            exam.Course = editedExam.Course.ToCourseModel();
+            exam.HeldAt = editedExam.HeldAt;
 
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpGet("exam/{id}/generatesheets")]
+        public async Task<IActionResult> GetGenerateSheets()
+        {
+            return NoContent();
+        }
+
+        [HttpPost("exam/{id}/generatesheets")]
+        public async Task<IActionResult> GenerateSheets([FromBody] ExamDTO exam)
+        {
+            throw new NotImplementedException();
         }
     }
 }
