@@ -1,6 +1,6 @@
-﻿namespace QuickMarkWeb.Server.Shared.Course
+﻿namespace Shared.Course
 {
-    public class CourseDTO
+    public class NewCourseRequest
     {
         public string Code { get; set; }
         public string Name { get; set; }

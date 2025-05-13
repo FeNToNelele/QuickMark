@@ -1,7 +1,6 @@
-﻿using QuickMarkWeb.Server.Models;
-using QuickMarkWeb.Server.Shared.Exam;
+﻿using Shared.Exam;
 
-namespace QuickMarkWeb.Server.Shared.Questionnaire
+namespace Shared.Questionnaire
 {
     public class QuestionnaireDTO
     {

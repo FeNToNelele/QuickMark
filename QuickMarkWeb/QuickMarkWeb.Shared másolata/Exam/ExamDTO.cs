@@ -1,14 +1,13 @@
-﻿using QuickMarkWeb.Server.Models;
-using QuickMarkWeb.Server.Shared.Course;
-using QuickMarkWeb.Server.Shared.Questionnaire;
-using QuickMarkWeb.Server.Shared.User;
+﻿using Shared.Course;
+using Shared.Questionnaire;
+using Shared.User;
 
-namespace QuickMarkWeb.Server.Shared.Exam
+namespace Shared.Exam
 {
     public class ExamDTO
     {
         public int Id { get; set; }
-        public string CourseId { get; set; }
+        public string CourseCode { get; set; }
         public CourseDTO Course { get; set; }
         public string UserUsername { get; set; }
         public UserDTO User { get; set; }

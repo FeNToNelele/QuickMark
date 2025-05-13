@@ -20,9 +20,9 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("save")]
-        public async Task<IActionResult> SaveExamResult([FromBody] ExamResultDTO examResultDTO)
+        public async Task<IActionResult> SaveExamResult([FromBody] NewExamResultRequest request)
         {
-            ExamResult examResult = examResultDTO.ToExamResultModel();
+            ExamResult examResult = request.ToExamResultModel();
 
             _context.ExamResults.Add(examResult);
             await _context.SaveChangesAsync();

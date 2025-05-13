@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace QuickMarkWeb.Server.Shared.User
+﻿namespace Shared.User
 {
     public class UserDTO
     {

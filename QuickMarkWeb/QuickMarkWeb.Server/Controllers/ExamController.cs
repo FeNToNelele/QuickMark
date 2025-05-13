@@ -46,33 +46,34 @@ namespace QuickMarkWeb.Server.Controllers
         public async Task<IActionResult> GetQuestionnaires()
         {
             //QoL: identifier name would be better
+            var questionnaires = await _context.Questionnaires
+                .Include(q => q.Exams)
+                .ToListAsync();
 
-            var questionnaires = _context.Questionnaires.ToListAsync();
-
-            return Ok(questionnaires);
+            var dtoList = questionnaires.Select(q => q.ToQuestionnaireDTO()).ToList();
+            return Ok(dtoList);
         }
 
 
         [HttpPost("add/exam")]
-        public async Task<IActionResult> AddExam([FromBody] ExamDTO newExamDTO)
+        public async Task<IActionResult> AddExam([FromBody] NewExamRequest newExam)
         {
-            if (newExamDTO.CourseCode != newExamDTO.Questionnaire.CourseCode)
+            if (newExam.CourseCode != _context.Questionnaires.First(q => q.Id == newExam.QuestionnaireId).CourseCode)
             {
-                return BadRequest("Course code for new exam and its questionnaire must be the same.");
+                return BadRequest("Course code mismatch.");
             }
 
-            Exam exam = newExamDTO.ToExamModel();
-
+            var exam = newExam.ToExamModel();
             _context.Exams.Add(exam);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAllExams), exam);
+            return CreatedAtAction(nameof(GetAllExams), new { id = exam.Id }, exam.ToExamDTO());
         }
 
         [HttpPut("edit/exam/{id}")]
-        public async Task<IActionResult> EditExam([FromBody] ExamDTO editedExam)
+        public async Task<IActionResult> EditExam(int id, [FromBody] NewExamRequest editedExam)
         {
-            var exam = await _context.Exams.FindAsync(editedExam.Id);
+            var exam = await _context.Exams.FindAsync(id);
             if (exam == null) return NotFound();
 
             exam.CourseCode = editedExam.CourseCode;
@@ -80,7 +81,7 @@ namespace QuickMarkWeb.Server.Controllers
             exam.QuestionAmount = editedExam.QuestionAmount;
             exam.CorrectLimit = editedExam.CorrectLimit;
             exam.AppliedStudents = editedExam.AppliedStudents;
-            exam.Course = editedExam.Course.ToCourseModel();
+            exam.Course = _context.Courses.FirstOrDefault(c => c.Code == editedExam.CourseCode);
             exam.HeldAt = editedExam.HeldAt;
 
             await _context.SaveChangesAsync();

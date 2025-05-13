@@ -1,7 +1,7 @@
-﻿using QuickMarkWeb.Server.Shared.Exam;
-using QuickMarkWeb.Server.Shared.User;
+﻿using Shared.Exam;
+using Shared.User;
 
-namespace QuickMarkWeb.Server.Shared.ExamResult
+namespace Shared.ExamResult
 {
     public class ExamResultDTO
     {

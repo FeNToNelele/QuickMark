@@ -32,7 +32,7 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("uploadgift")]
-        public async Task<IActionResult> UploadGIFT([FromBody] QuestionnaireDTO questionnaire)
+        public async Task<IActionResult> UploadGIFT([FromBody] NewQuestionnaireRequest questionnaire)
         {
             Questionnaire newQuestionnaire = questionnaire.ToQuestionnaireModel();
 
