@@ -14,6 +14,6 @@ namespace Shared.Exam
         public int QuestionnaireId { get; set; }
         public int QuestionAmount { get; set; }
         public string CorrectLimit { get; set; } //if regular exam, multiple limits separated by comma
-        public string AppliedStudents { get; set; }
+        public string AppliedStudents { get; set; } = "";
     }
 }

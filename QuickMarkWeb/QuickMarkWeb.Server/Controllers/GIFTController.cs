@@ -20,15 +20,14 @@ namespace QuickMarkWeb.Server.Controllers
             _context = context;
         }
 
-        [HttpGet("uploadgift")]
-        public async Task<IActionResult> GetCourses()
+        [HttpGet("uploadgift/{id}")]
+        public async Task<IActionResult> GetSelectedCourseDetails(string courseCode)
         {
-            var courses = _context.Courses
-                .Include(c => c.Code)
-                .Include(c => c.Name)
-                .ToList();
+            var selectedCourse = _context.Courses.FirstOrDefault(c => c.Code == courseCode);
 
-            return Ok(courses);
+            if (selectedCourse == null) return NotFound();
+
+            return Ok(selectedCourse);
         }
 
         [HttpPost("uploadgift")]

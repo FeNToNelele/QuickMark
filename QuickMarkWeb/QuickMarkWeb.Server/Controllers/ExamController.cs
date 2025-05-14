@@ -88,16 +88,26 @@ namespace QuickMarkWeb.Server.Controllers
             return NoContent();
         }
 
+
+        //TODO: Consider if this endpoint is needed
         [HttpGet("exam/{id}/generatesheets")]
-        public async Task<IActionResult> GetGenerateSheets()
+        public async Task<IActionResult> GetGenerateSheets(int id)
         {
-            return NoContent();
+            var selectedExam = _context.Exams.FirstOrDefault(e => e.Id == id);
+
+            if (selectedExam == null) return NotFound();
+
+            return Ok(selectedExam);
         }
 
         [HttpPost("exam/{id}/generatesheets")]
         public async Task<IActionResult> GenerateSheets([FromBody] ExamDTO exam)
         {
-            throw new NotImplementedException();
+            //TODO: forward request to Balazs's endpoint for generating exams
+
+            //Should return a PDF file
+
+            return NoContent();
         }
     }
 }
