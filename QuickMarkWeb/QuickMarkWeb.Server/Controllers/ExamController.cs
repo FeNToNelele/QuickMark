@@ -5,6 +5,7 @@ using QuickMarkWeb.Server.Data;
 using QuickMarkWeb.Server.Models;
 using Shared.Exam;
 using QuickMarkWeb.Server.Helper;
+using Shared.Questionnaire;
 
 namespace QuickMarkWeb.Server.Controllers
 {
@@ -21,7 +22,7 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpGet("exams")]
-        public IActionResult GetAllExams()
+        public async Task<ActionResult<IEnumerable<ExamDTO>>> GetAllExams()
         {
             var currentUser = User.Identity.Name;
 
@@ -43,7 +44,7 @@ namespace QuickMarkWeb.Server.Controllers
         /// </summary>
         /// <returns>All questionnaires uploaded previously</returns>
         [HttpGet("add/exam")]
-        public async Task<IActionResult> GetQuestionnaires()
+        public async Task<ActionResult<IEnumerable<QuestionnaireDTO>>> GetQuestionnaires()
         {
             //QoL: identifier name would be better
             var questionnaires = await _context.Questionnaires
@@ -56,7 +57,7 @@ namespace QuickMarkWeb.Server.Controllers
 
 
         [HttpPost("add/exam")]
-        public async Task<IActionResult> AddExam([FromBody] NewExamRequest newExam)
+        public async Task<ActionResult<ExamDTO>> AddExam([FromBody] NewExamRequest newExam)
         {
             if (newExam.CourseCode != _context.Questionnaires.First(q => q.Id == newExam.QuestionnaireId).CourseCode)
             {
@@ -91,7 +92,7 @@ namespace QuickMarkWeb.Server.Controllers
 
         //TODO: Consider if this endpoint is needed
         [HttpGet("exam/{id}/generatesheets")]
-        public async Task<IActionResult> GetGenerateSheets(int id)
+        public async Task<ActionResult<ExamDTO>> GetGenerateSheets(int id)
         {
             var selectedExam = _context.Exams.FirstOrDefault(e => e.Id == id);
 
@@ -101,7 +102,7 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("exam/{id}/generatesheets")]
-        public async Task<IActionResult> GenerateSheets([FromBody] ExamDTO exam)
+        public async Task<ActionResult<FileContentResult>> GenerateSheets([FromBody] ExamDTO exam)
         {
             //TODO: forward request to Balazs's endpoint for generating exams
 
