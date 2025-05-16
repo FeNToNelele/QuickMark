@@ -28,12 +28,12 @@ namespace QuickMarkWeb.Server.Controllers
 
             //QoL: Location of exam would be nice in production
 
-            var exams = _context.Exams
+            var exams = await _context.Exams
                 .Where(e => e.UserUsername == currentUser)
                 .Include(e => e.Id)
                 .Include(e => e.Course)
                 .Include(e => e.HeldAt)
-                .ToList();
+                .ToListAsync();
 
             return Ok(exams);
         }
@@ -94,7 +94,7 @@ namespace QuickMarkWeb.Server.Controllers
         [HttpGet("exam/{id}/generatesheets")]
         public async Task<ActionResult<ExamDTO>> GetGenerateSheets(int id)
         {
-            var selectedExam = _context.Exams.FirstOrDefault(e => e.Id == id);
+            var selectedExam = await _context.Exams.FirstOrDefaultAsync(e => e.Id == id);
 
             if (selectedExam == null) return NotFound();
 

@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using QuickMarkWeb.Server.Data;
 using QuickMarkWeb.Server.Models;
+using QuickMarkWeb.Server.Services;
+using Shared.Auth;
 using Shared.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -18,104 +21,108 @@ namespace QuickMarkWeb.Server.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly ITokenService _tokenService;
+        private readonly IPasswordService _passwordService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(AppDbContext context, IConfiguration configuration)
+        public AuthController(
+            AppDbContext context,
+            ITokenService tokenService,
+            IPasswordService passwordService,
+            ILogger<AuthController> logger)
         {
             _context = context;
-            _configuration = configuration;
+            _tokenService = tokenService;
+            _passwordService = passwordService;
+            _logger = logger;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserDTO user)
+        public async Task<ActionResult<AuthResponseDTO>> Register([FromBody] RegisterRequestDTO request)
         {
-            if (string.IsNullOrEmpty(user.Username))
-                return BadRequest("Username is required");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            if (string.IsNullOrEmpty(user.Password))
-                return BadRequest("Password is required");
-
-            if (_context.Users.Any(u => u.Username == user.Username))
-                return BadRequest("Username already exists");
-
-            var passwordHash = HashPasword(user.Password, out var salt);
-
-            var newUser = new User
+            try
             {
-                Username = user.Username,
-                FullName = user.FullName,
-                Password = passwordHash,
-                Salt = salt,
-                IsAdmin = user.IsAdmin
-            };
+                if (await _context.Users.AnyAsync(u => u.Username == request.Username))
+                    return Conflict("Username already exists");
 
-            _context.Users.Add(newUser);
-            await _context.SaveChangesAsync();
+                var (hash, salt) = _passwordService.HashPassword(request.Password);
 
-            return Ok(new { Message = "User registered successfully." });
-        }
+                var newUser = new User
+                {
+                    Username = request.Username,
+                    FullName = request.FullName,
+                    Password = hash,
+                    Salt = salt,
+                    IsAdmin = request.IsAdmin
+                };
 
-        const int keySize = 64;
-        const int iterations = 350000;
-        static readonly HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+                _context.Users.Add(newUser);
+                await _context.SaveChangesAsync();
 
-        private static string HashPasword(string password, out byte[] salt)
-        {
-            salt = RandomNumberGenerator.GetBytes(keySize);
-            var hash = Rfc2898DeriveBytes.Pbkdf2(
-                Encoding.UTF8.GetBytes(password),
-                salt,
-                iterations,
-                hashAlgorithm,
-                keySize);
-            return Convert.ToHexString(hash);
+                _logger.LogInformation("New user registered: {Username}", request.Username);
+
+                var token = _tokenService.GenerateToken(newUser);
+                return Ok(new AuthResponseDTO
+                {
+                    Token = token.Token,
+                    Expiration = token.Expiration,
+                    User = new UserInfoDTO
+                    {
+                        Username = newUser.Username,
+                        FullName = newUser.FullName,
+                        IsAdmin = newUser.IsAdmin
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during registration");
+                return StatusCode(500, "An error occurred during registration");
+            }
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserDTO loginRequest)
+        public async Task<ActionResult<AuthResponseDTO>> Login([FromBody] AuthRequestDTO request)
         {
-            var user = await _context.Users.FindAsync(loginRequest.Username);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            if (user == null || !VerifyPassword(loginRequest.Password, user.Password, user.Salt))
-                return Unauthorized("Invalid credentials");
-
-
-            var claims = new[]
+            try
             {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "Examinor"),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+                var user = await _context.Users
+                    .FirstOrDefaultAsync(u => u.Username == request.Username);
 
-            // Generate token
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration["JWT:Secret"]));
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                claims: claims,
-                expires: DateTime.Now.AddHours(3),
-                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
-            );
-
-            return Ok(new
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = token.ValidTo,
-                user = new
+                if (user == null || !_passwordService.VerifyPassword(
+                    request.Password, user.Password, user.Salt))
                 {
-                    user.Username,
-                    user.FullName,
-                    user.IsAdmin
+                    _logger.LogWarning("Failed login attempt for username: {Username}", request.Username);
+                    return Unauthorized("Invalid credentials");
                 }
-            });
-        }
 
-        bool VerifyPassword(string password, string hash, byte[] salt)
-        {
-            var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, iterations, hashAlgorithm, keySize);
-            return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
+                var token = _tokenService.GenerateToken(user);
+
+                _logger.LogInformation("User logged in: {Username}", request.Username);
+
+                return Ok(new AuthResponseDTO
+                {
+                    Token = token.Token,
+                    Expiration = token.Expiration,
+                    User = new UserInfoDTO
+                    {
+                        Username = user.Username,
+                        FullName = user.FullName,
+                        IsAdmin = user.IsAdmin
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during login");
+                return StatusCode(500, "An error occurred during login");
+            }
         }
     }
 }
