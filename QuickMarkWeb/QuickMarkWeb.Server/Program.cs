@@ -3,20 +3,22 @@ using Microsoft.OpenApi.Models;
 using QuickMarkWeb.Server.Data;
 using QuickMarkWeb.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
-// Configure JWT
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -33,42 +35,56 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuickMark API", Version = "v1" });
-    });
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuickMark API", Version = "v1" });
 
-builder.Services.AddScoped<IPasswordService, PasswordService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("v1/swagger.json", "API Doc");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "API Doc");
         options.RoutePrefix = "swagger";
     });
 }
 
-
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
-
 app.MapFallbackToFile("/index.html");
 
 app.Run();

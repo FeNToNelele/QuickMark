@@ -3,40 +3,12 @@
   "WorkspaceRootPath": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.shared\\auth\\authrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\auth\\authrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.shared\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.shared\\auth\\registerrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\auth\\registerrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.shared\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,110 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthRequestDTO.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Auth\\AuthRequestDTO.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Auth\\AuthRequestDTO.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Auth\\AuthRequestDTO.cs",
-              "RelativeToolTip": "QuickMarkWeb.Shared\\Auth\\AuthRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:21:38.107Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\User\\UserDTO.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\User\\UserDTO.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\User\\UserDTO.cs",
-              "RelativeToolTip": "QuickMarkWeb.Shared\\User\\UserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:07:50.277Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Program.cs",
               "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
               "RelativeToolTip": "QuickMarkWeb.Server\\Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-16T20:20:21.428Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAjwH0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:14:54.728Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Services\\TokenService.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Services\\TokenService.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Services\\TokenService.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Services\\TokenService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:14:31.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PasswordService.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Services\\PasswordService.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Services\\PasswordService.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Services\\PasswordService.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Services\\PasswordService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:12:05.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AuthResponseDTO.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Auth\\AuthResponseDTO.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Auth\\AuthResponseDTO.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Auth\\AuthResponseDTO.cs",
-              "RelativeToolTip": "QuickMarkWeb.Shared\\Auth\\AuthResponseDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:07:31.162Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RegisterRequestDTO.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Auth\\RegisterRequestDTO.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Auth\\RegisterRequestDTO.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Auth\\RegisterRequestDTO.cs",
-              "RelativeToolTip": "QuickMarkWeb.Shared\\Auth\\RegisterRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T20:04:45.632Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ExamController.cs",
               "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\ExamController.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
@@ -162,8 +43,7 @@
               "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAjwFQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T19:30:26.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-16T19:30:26.336Z"
             }
           ]
         }
