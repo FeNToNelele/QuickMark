@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using QuickMarkWeb.Server.Data;
 using QuickMarkWeb.Server.Helper;
 using QuickMarkWeb.Server.Models;
+using Shared.Course;
 using Shared.Questionnaire;
 
 namespace QuickMarkWeb.Server.Controllers
@@ -20,27 +21,32 @@ namespace QuickMarkWeb.Server.Controllers
             _context = context;
         }
 
-        [HttpGet("uploadgift/{id}")]
-        public async Task<IActionResult> GetSelectedCourseDetails(string courseCode)
+        [HttpGet("uploadgift/{courseCode}")]
+        public async Task<ActionResult<CourseDTO>> GetSelectedCourseDetails(string courseCode)
         {
             var selectedCourse = _context.Courses.FirstOrDefault(c => c.Code == courseCode);
 
             if (selectedCourse == null) return NotFound();
 
-            return Ok(selectedCourse);
+            return Ok(selectedCourse.ToCourseDTO());
         }
 
         [HttpPost("uploadgift")]
-        public async Task<IActionResult> UploadGIFT([FromBody] NewQuestionnaireRequest questionnaire)
+        public async Task<ActionResult<QuestionnaireDTO>> UploadGIFT([FromBody] NewQuestionnaireRequest questionnaire)
         {
             Questionnaire newQuestionnaire = questionnaire.ToQuestionnaireModel();
 
             _context.Questionnaires.Add(newQuestionnaire);
             await _context.SaveChangesAsync();
 
-            ExamController examController = new ExamController(this._context);
+            var questionnaireDTO = newQuestionnaire.ToQuestionnaireDTO();
 
-            return CreatedAtAction(nameof(examController.GetAllExams), questionnaire);
+            return CreatedAtAction(
+                actionName: "GetAllExams",
+                controllerName: "Exam",
+                routeValues: null,
+                value: questionnaireDTO
+            );
         }
     }
 }

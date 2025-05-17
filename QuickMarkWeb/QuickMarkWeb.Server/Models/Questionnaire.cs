@@ -10,9 +10,5 @@ namespace QuickMarkWeb.Server.Models
         public string CourseCode { get; set; }
 
         public Course Course { get; set; }
-
-        public int ExamId { get; set; }
-        public List<Exam> Exams { get; set; }
-
     }
 }

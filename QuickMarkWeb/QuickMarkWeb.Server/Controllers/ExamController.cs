@@ -6,6 +6,7 @@ using QuickMarkWeb.Server.Models;
 using Shared.Exam;
 using QuickMarkWeb.Server.Helper;
 using Shared.Questionnaire;
+using System.Security.Claims;
 
 namespace QuickMarkWeb.Server.Controllers
 {
@@ -24,18 +25,13 @@ namespace QuickMarkWeb.Server.Controllers
         [HttpGet("exams")]
         public async Task<ActionResult<IEnumerable<ExamDTO>>> GetAllExams()
         {
-            var currentUser = User.Identity.Name;
-
             //QoL: Location of exam would be nice in production
 
-            var exams = await _context.Exams
-                .Where(e => e.UserUsername == currentUser)
-                .Include(e => e.Id)
-                .Include(e => e.Course)
-                .Include(e => e.HeldAt)
-                .ToListAsync();
+            var exams = await _context.Exams.ToListAsync();
 
-            return Ok(exams);
+            var examDTOs = exams.Select(e => e.ToExamDTO()).ToList();
+
+            return Ok(examDTOs);
         }
 
 
@@ -47,9 +43,7 @@ namespace QuickMarkWeb.Server.Controllers
         public async Task<ActionResult<IEnumerable<QuestionnaireDTO>>> GetQuestionnaires()
         {
             //QoL: identifier name would be better
-            var questionnaires = await _context.Questionnaires
-                .Include(q => q.Exams)
-                .ToListAsync();
+            var questionnaires = await _context.Questionnaires.ToListAsync();
 
             var dtoList = questionnaires.Select(q => q.ToQuestionnaireDTO()).ToList();
             return Ok(dtoList);
@@ -59,14 +53,43 @@ namespace QuickMarkWeb.Server.Controllers
         [HttpPost("add/exam")]
         public async Task<ActionResult<ExamDTO>> AddExam([FromBody] NewExamRequest newExam)
         {
-            if (newExam.CourseCode != _context.Questionnaires.First(q => q.Id == newExam.QuestionnaireId).CourseCode)
+            if (!_context.Courses.Any(c => c.Code == newExam.CourseCode))
+                return BadRequest("Exam is assigned to non-existing Course.");
+
+            if (!_context.Questionnaires.Any(q => q.Id == newExam.QuestionnaireId))
+                return BadRequest("Exam is assigned to non-existing questionnaire.");
+
+            if (string.IsNullOrEmpty(newExam.AppliedStudents))
             {
-                return BadRequest("Course code mismatch.");
+                return BadRequest("No students were assigned to exam.");
+            }
+
+            if (newExam.HeldAt < DateTime.UtcNow)
+            {
+                return BadRequest("Exam must be held later than current time.");
+            }
+
+            if (newExam.QuestionAmount < 1)
+            {
+                return BadRequest("Exam must have at least one question.");
+            }
+
+            string[] limits = newExam.CorrectLimit.Split(';');
+
+            if (limits.Any(l => Convert.ToInt32(l) > newExam.QuestionAmount))
+            {
+                return BadRequest("Exam rating values must be lower than the amount of questions generated.");
             }
 
             var exam = newExam.ToExamModel();
             _context.Exams.Add(exam);
             await _context.SaveChangesAsync();
+
+            exam = await _context.Exams
+                .Include(e => e.Course)
+                .Include(e => e.User)
+                .Include(e => e.Questionnaire)
+                .FirstOrDefaultAsync(e => e.Id == exam.Id);
 
             return CreatedAtAction(nameof(GetAllExams), new { id = exam.Id }, exam.ToExamDTO());
         }
@@ -77,7 +100,7 @@ namespace QuickMarkWeb.Server.Controllers
             var exam = await _context.Exams.FindAsync(id);
             if (exam == null) return NotFound();
 
-            exam.CourseCode = editedExam.CourseCode;
+            exam.CourseId = editedExam.CourseCode;
             exam.HeldAt = editedExam.HeldAt;
             exam.QuestionAmount = editedExam.QuestionAmount;
             exam.CorrectLimit = editedExam.CorrectLimit;

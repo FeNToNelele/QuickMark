@@ -44,7 +44,7 @@ namespace QuickMarkWeb.Server.Data
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.Course)
                 .WithMany(c => c.Exams)
-                .HasForeignKey(e => e.CourseCode)
+                .HasForeignKey(e => e.CourseId)
                 .HasConstraintName("fk_exam_course");
 
             modelBuilder.Entity<Exam>()
@@ -55,7 +55,7 @@ namespace QuickMarkWeb.Server.Data
 
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.Questionnaire)
-                .WithMany(q => q.Exams)
+                .WithMany()
                 .HasForeignKey(e => e.QuestionnaireId)
                 .HasConstraintName("fk_exam_questionnaire");
 
@@ -75,12 +75,25 @@ namespace QuickMarkWeb.Server.Data
             {
                 foreach (var property in entity.GetProperties())
                 {
-                    if (property.GetColumnName() == null) // Skip already configured columns
-                    {
-                        property.SetColumnName(ConvertToSnakeCase(property.Name));
-                    }
+                    property.SetColumnName(ConvertToSnakeCase(property.Name));
+                }
+
+                foreach (var key in entity.GetKeys())
+                {
+                    key.SetName(ConvertToSnakeCase(key.GetName()));
+                }
+
+                foreach (var fk in entity.GetForeignKeys())
+                {
+                    fk.SetConstraintName(ConvertToSnakeCase(fk.GetConstraintName()));
+                }
+
+                foreach (var index in entity.GetIndexes())
+                {
+                    index.SetDatabaseName(ConvertToSnakeCase(index.GetDatabaseName()));
                 }
             }
+
         }
 
         private string ConvertToSnakeCase(string input)

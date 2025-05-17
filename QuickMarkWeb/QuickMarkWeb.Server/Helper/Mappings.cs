@@ -1,4 +1,5 @@
-﻿using QuickMarkWeb.Server.Models;
+﻿using Npgsql.EntityFrameworkCore.PostgreSQL.Query.ExpressionTranslators.Internal;
+using QuickMarkWeb.Server.Models;
 using Shared.Course;
 using Shared.Exam;
 using Shared.ExamResult;
@@ -33,6 +34,16 @@ namespace QuickMarkWeb.Server.Helper
             };
         }
 
+        public static UserInfoDTO ToUserInfoDTO(this User user)
+        {
+            return new UserInfoDTO
+            {
+                Username = user.Username,
+                FullName = user.FullName,
+                IsAdmin = user.IsAdmin
+            };
+        }
+
         public static Course ToCourseModel(this NewCourseRequest courseRequest)
         {
             return new Course
@@ -59,8 +70,7 @@ namespace QuickMarkWeb.Server.Helper
             {
                 GiftFile = questionnaireRequest.GiftFile,
                 Answers = questionnaireRequest.Answers,
-                CourseCode = questionnaireRequest.CourseCode,
-                Exams = new List<Exam>()
+                CourseCode = questionnaireRequest.CourseCode
             };
         }
 
@@ -71,8 +81,7 @@ namespace QuickMarkWeb.Server.Helper
                 Id = questionnaire.Id,
                 GiftFile = questionnaire.GiftFile,
                 Answers = questionnaire.Answers,
-                CourseCode = questionnaire.CourseCode,
-                Exam = questionnaire.Exams?.FirstOrDefault()?.ToExamDTO() // populates first Exam if available
+                CourseCode = questionnaire.CourseCode
             };
         }
 
@@ -80,7 +89,7 @@ namespace QuickMarkWeb.Server.Helper
         {
             return new Exam
             {
-                CourseCode = examRequest.CourseCode,
+                CourseId = examRequest.CourseCode,       
                 UserUsername = examRequest.UserUsername,
                 HeldAt = examRequest.HeldAt,
                 QuestionnaireId = examRequest.QuestionnaireId,
@@ -96,7 +105,7 @@ namespace QuickMarkWeb.Server.Helper
             return new ExamDTO
             {
                 Id = exam.Id,
-                CourseCode = exam.CourseCode,
+                CourseCode = exam.CourseId,
                 UserUsername = exam.UserUsername,
                 HeldAt = exam.HeldAt,
                 QuestionnaireId = exam.QuestionnaireId,
@@ -104,7 +113,7 @@ namespace QuickMarkWeb.Server.Helper
                 CorrectLimit = exam.CorrectLimit,
                 AppliedStudents = exam.AppliedStudents,
                 Course = exam.Course?.ToCourseDTO(),
-                User = exam.User?.ToUserDTO(),
+                User = exam.User?.ToUserInfoDTO(),
                 Questionnaire = exam.Questionnaire?.ToQuestionnaireDTO()
             };
         }
@@ -129,8 +138,8 @@ namespace QuickMarkWeb.Server.Helper
                 ExamineeNeptunCode = examResult.ExamineeNeptunCode,
                 UserUsername = examResult.UserUsername,
                 CorrectAnswers = examResult.CorrectAnswers,
-                Exam = examResult.Exam?.ToExamDTO(),
-                User = examResult.User?.ToUserDTO()
+                Exam = examResult.Exam.ToExamDTO(),
+                User = examResult.User.ToUserDTO()
             };
         }
     }

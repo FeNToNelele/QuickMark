@@ -12,8 +12,8 @@ using QuickMarkWeb.Server.Data;
 namespace QuickMarkWeb.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250517112642_AddSaltAttributeToUser")]
-    partial class AddSaltAttributeToUser
+    [Migration("20250517135645_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,13 +28,16 @@ namespace QuickMarkWeb.Server.Migrations
             modelBuilder.Entity("QuickMarkWeb.Server.Models.Course", b =>
                 {
                     b.Property<string>("Code")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("code");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
-                    b.HasKey("Code");
+                    b.HasKey("Code")
+                        .HasName("p_k_course");
 
                     b.ToTable("course", (string)null);
                 });
@@ -43,42 +46,54 @@ namespace QuickMarkWeb.Server.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AppliedStudents")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("applied_students");
 
                     b.Property<string>("CorrectLimit")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("correct_limit");
 
-                    b.Property<string>("CourseCode")
+                    b.Property<string>("CourseId")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("course_id");
 
                     b.Property<DateTime>("HeldAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("held_at");
 
                     b.Property<int>("QuestionAmount")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("question_amount");
 
                     b.Property<int>("QuestionnaireId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("questionnaire_id");
 
                     b.Property<string>("UserUsername")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("user_username");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("p_k_exam");
 
-                    b.HasIndex("CourseCode");
+                    b.HasIndex("CourseId")
+                        .HasDatabaseName("i_x_exam_course_id");
 
-                    b.HasIndex("QuestionnaireId");
+                    b.HasIndex("QuestionnaireId")
+                        .HasDatabaseName("i_x_exam_questionnaire_id");
 
-                    b.HasIndex("UserUsername");
+                    b.HasIndex("UserUsername")
+                        .HasDatabaseName("i_x_exam_user_username");
 
                     b.ToTable("exam", (string)null);
                 });
@@ -87,29 +102,37 @@ namespace QuickMarkWeb.Server.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CorrectAnswers")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("correct_answers");
 
                     b.Property<int>("ExamId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("exam_id");
 
                     b.Property<string>("ExamineeNeptunCode")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("examinee_neptun_code");
 
                     b.Property<string>("UserUsername")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("user_username");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("p_k_exam_result");
 
-                    b.HasIndex("ExamId");
+                    b.HasIndex("ExamId")
+                        .HasDatabaseName("i_x_exam_result_exam_id");
 
-                    b.HasIndex("UserUsername");
+                    b.HasIndex("UserUsername")
+                        .HasDatabaseName("i_x_exam_result_user_username");
 
                     b.ToTable("exam_result", (string)null);
                 });
@@ -118,28 +141,35 @@ namespace QuickMarkWeb.Server.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Answers")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("answers");
 
                     b.Property<string>("CourseCode")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("course_code");
 
                     b.Property<int>("ExamId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("exam_id");
 
                     b.Property<string>("GiftFile")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("gift_file");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("p_k_questionnaire");
 
-                    b.HasIndex("CourseCode");
+                    b.HasIndex("CourseCode")
+                        .HasDatabaseName("i_x_questionnaire_course_code");
 
                     b.ToTable("questionnaire", (string)null);
                 });
@@ -169,7 +199,8 @@ namespace QuickMarkWeb.Server.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("salt");
 
-                    b.HasKey("Username");
+                    b.HasKey("Username")
+                        .HasName("p_k_user");
 
                     b.ToTable("user", (string)null);
                 });
@@ -178,7 +209,7 @@ namespace QuickMarkWeb.Server.Migrations
                 {
                     b.HasOne("QuickMarkWeb.Server.Models.Course", "Course")
                         .WithMany("Exams")
-                        .HasForeignKey("CourseCode")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_exam_course");

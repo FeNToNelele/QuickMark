@@ -37,4 +37,8 @@
     <ProjectReference Include="..\QuickMarkWeb.Shared\Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
