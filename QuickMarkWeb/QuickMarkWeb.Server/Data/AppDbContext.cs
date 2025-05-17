@@ -16,6 +16,12 @@ namespace QuickMarkWeb.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().ToTable("user");
+            modelBuilder.Entity<Course>().ToTable("course");
+            modelBuilder.Entity<Exam>().ToTable("exam");
+            modelBuilder.Entity<Questionnaire>().ToTable("questionnaire");
+            modelBuilder.Entity<ExamResult>().ToTable("exam_result");
+
             modelBuilder.Entity<Course>().HasKey(c => c.Code);
             modelBuilder.Entity<User>().HasKey(u => u.Username);
 
@@ -37,7 +43,7 @@ namespace QuickMarkWeb.Server.Data
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.Questionnaire)
                 .WithMany(q => q.Exams)
-                .HasForeignKey(q => q.QuestionnaireId);
+                .HasForeignKey(e => e.QuestionnaireId);
 
             modelBuilder.Entity<ExamResult>()
                 .HasOne(er => er.Exam)
@@ -48,6 +54,21 @@ namespace QuickMarkWeb.Server.Data
                 .HasOne(er => er.User)
                 .WithMany(u => u.ExamResults)
                 .HasForeignKey(er => er.UserUsername);
+
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entity.GetProperties())
+                {
+                    property.SetColumnName(ConvertToSnakeCase(property.Name));
+                }
+            }
+        }
+
+        private string ConvertToSnakeCase(string input)
+        {
+            return string.Concat(input.Select((c, i) =>
+                i > 0 && char.IsUpper(c) ? "_" + c.ToString() : c.ToString()))
+                .ToLower();
         }
     }
 }
