@@ -25,41 +25,60 @@ namespace QuickMarkWeb.Server.Data
             modelBuilder.Entity<Course>().HasKey(c => c.Code);
             modelBuilder.Entity<User>().HasKey(u => u.Username);
 
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(u => u.Username).HasColumnName("username");
+                entity.Property(u => u.Password).HasColumnName("password");
+                entity.Property(u => u.Salt).HasColumnName("salt");
+                entity.Property(u => u.FullName).HasColumnName("full_name");
+                entity.Property(u => u.IsAdmin).HasColumnName("is_admin");
+            });
+
+            // Relationships
             modelBuilder.Entity<Questionnaire>()
                 .HasOne(q => q.Course)
                 .WithMany(c => c.Questionnaires)
-                .HasForeignKey(q => q.CourseCode);
+                .HasForeignKey(q => q.CourseCode)
+                .HasConstraintName("fk_questionnaire_course");
 
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.Course)
                 .WithMany(c => c.Exams)
-                .HasForeignKey(e => e.CourseCode);
+                .HasForeignKey(e => e.CourseCode)
+                .HasConstraintName("fk_exam_course");
 
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.User)
                 .WithMany(u => u.Exams)
-                .HasForeignKey(e => e.UserUsername);
+                .HasForeignKey(e => e.UserUsername)
+                .HasConstraintName("fk_exam_user");
 
             modelBuilder.Entity<Exam>()
                 .HasOne(e => e.Questionnaire)
                 .WithMany(q => q.Exams)
-                .HasForeignKey(e => e.QuestionnaireId);
+                .HasForeignKey(e => e.QuestionnaireId)
+                .HasConstraintName("fk_exam_questionnaire");
 
             modelBuilder.Entity<ExamResult>()
                 .HasOne(er => er.Exam)
                 .WithMany(e => e.ExamResults)
-                .HasForeignKey(er => er.ExamId);
+                .HasForeignKey(er => er.ExamId)
+                .HasConstraintName("fk_exam_result_exam");
 
             modelBuilder.Entity<ExamResult>()
                 .HasOne(er => er.User)
                 .WithMany(u => u.ExamResults)
-                .HasForeignKey(er => er.UserUsername);
+                .HasForeignKey(er => er.UserUsername)
+                .HasConstraintName("fk_exam_result_user");
 
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
                 foreach (var property in entity.GetProperties())
                 {
-                    property.SetColumnName(ConvertToSnakeCase(property.Name));
+                    if (property.GetColumnName() == null) // Skip already configured columns
+                    {
+                        property.SetColumnName(ConvertToSnakeCase(property.Name));
+                    }
                 }
             }
         }

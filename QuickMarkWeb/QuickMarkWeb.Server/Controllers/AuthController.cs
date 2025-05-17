@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -123,6 +124,14 @@ namespace QuickMarkWeb.Server.Controllers
                 _logger.LogError(ex, "Error during login");
                 return StatusCode(500, "An error occurred during login");
             }
+        }
+
+        [Authorize]
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            //In JWT logout is client-side: returning success
+            return Ok(new { Message = "Logout successful" });
         }
     }
 }
