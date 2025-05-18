@@ -15,6 +15,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//TODO: At deployment change code above to:
+/*
+ * builder.Services.AddDbContext<AppDbContext>(opt =>
+  opt.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_URL"))); //DATABASE_URL: the database's endpoint
+ */
+
+//TODO: At deployment change port to 80, as it is in dockerfile
+//builder.WebHost.UseUrls("http://*:80");
+
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
@@ -23,8 +32,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
+            ValidateIssuer = true, //can be turned off in demonstration
+            ValidateAudience = true, //can be turned off in demonstration
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["JWT:ValidIssuer"],

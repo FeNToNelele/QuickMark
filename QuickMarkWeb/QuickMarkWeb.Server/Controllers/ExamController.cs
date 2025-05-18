@@ -7,6 +7,8 @@ using Shared.Exam;
 using QuickMarkWeb.Server.Helper;
 using Shared.Questionnaire;
 using System.Security.Claims;
+using System.Text.Json;
+using System.Text;
 
 namespace QuickMarkWeb.Server.Controllers
 {
@@ -125,13 +127,26 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("exam/{id}/generatesheets")]
-        public async Task<ActionResult<FileContentResult>> GenerateSheets([FromBody] ExamDTO exam)
+        public async Task<ActionResult<FileContentResult>> GenerateSheets(int id, [FromBody] ExamDTO request)
         {
-            //TODO: forward request to Balazs's endpoint for generating exams
+            using var httpClient = new HttpClient();
 
-            //Should return a PDF file
+            var flaskApiUrl = "http://localhost:5000/generate_exam_sheets";
 
-            return NoContent();
+            var jsonContent = JsonSerializer.Serialize(request);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            
+            var response = await httpClient.PostAsync(flaskApiUrl, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                return StatusCode((int)response.StatusCode, errorContent);
+            }
+
+            var pdfBytes = await response.Content.ReadAsByteArrayAsync();
+
+            return File(pdfBytes, "application/pdf", $"exam_sheets_{id}.pdf");
         }
     }
 }

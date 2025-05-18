@@ -4,8 +4,8 @@ services:
   db:
     image: postgres:17
     environment:
-      POSTGRES_USER: postgres #FIXME
-      POSTGRES_PASSWORD: root #FIXME
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: quickmarkdb
     volumes:
       - ./db/data:/var/lib/postgresql/data
@@ -24,4 +24,13 @@ services:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: "postgres://postgres:root@db:5432/quickmarkdb" #FIXME
+      # EF Core expects this format for UseNpgsql:
+      DATABASE_URL: "Host=db;Port=5432;Database=quickmarkdb;Username=postgres;Password=root"
+
+      # Optional but recommended JWT settings
+      JWT__Secret: "K3yThat!sThirtyTwoCharactersLong"
+      JWT__ValidIssuer: "quickmark-api"
+      JWT__ValidAudience: "quickmark-client"
+
+    ports:
+      - "7045:80"  # Exposes your ASP.NET app on localhost:7045
