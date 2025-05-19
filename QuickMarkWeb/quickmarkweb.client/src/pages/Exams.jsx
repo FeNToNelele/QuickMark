@@ -4,132 +4,199 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { toast } from "sonner";
 
-const examSchema = z.object({
-  courseId: z.string({ required_error: "Course ID is required." }),
-  questionBankId: z.string({ required_error: "Question Bank ID is required." }),
-  heldAt: z.date({ required_error: "Held At date is required." }),
-  examType: z.enum(["Screening Exam", "Colloquium"], {
-    required_error: "Exam type is required.",
-  }),
-  questionCount: z.number().min(1, { message: "Question count must be at least 1." }),
-  passingScore: z.number().optional(),
-  gradeThresholds: z.object({
-    "2": z.number().optional(),
-    "3": z.number().optional(),
-    "4": z.number().optional(),
-    "5": z.number().optional(),
-  }).optional(),
-});
+// Dummy data for courses and question banks
+const dummyCourses = [
+  { code: "COURSE123", name: "Bevezetés a programozásba" },
+  { code: "COURSE456", name: "Adatbázisok alapjai" },
+];
 
+const dummyQuestionBanks = [
+  { id: 1, label: "Bevprog 2024 tavasz", courseCode: "COURSE123" },
+  { id: 2, label: "Adatbázisok 2024 tavasz", courseCode: "COURSE456" },
+];
 
-// FIXME Replace consts with actual data fetching logic
-const courses = [
-    { label: "Course 1", value: "course1" },
-    { label: "Course 2", value: "course2" },
-    { label: "Course 3", value: "course3" },
-]
+// Dummy initial exams
+const dummyExams = [
+  {
+    id: 1,
+    courseId: "COURSE123",
+    questionnaireId: 1,
+    heldAt: "2025-06-01T10:00",
+    examType: "beugró",
+    questionAmount: 10,
+    correctLimit: "6",
+  },
+  {
+    id: 2,
+    courseId: "COURSE456",
+    questionnaireId: 2,
+    heldAt: "2025-06-10T09:00",
+    examType: "kollokvium",
+    questionAmount: 20,
+    correctLimit: "10;14;17;19", // 2:10, 3:14, 4:17, 5:19
+  },
+];
 
-const questionbanks = [
-    { label: "Question Bank 1", value: "questionbank1" },
-    { label: "Question Bank 2", value: "questionbank2" },
-    { label: "Question Bank 3", value: "questionbank3" },
-]
+const gradeLabels = ["2", "3", "4", "5"];
+
 const Exams = () => {
-  const [exams, setExams] = useState([]);
+  const [exams, setExams] = useState(dummyExams);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentExam, setCurrentExam] = useState(null);
 
+  // Form state
   const form = useForm({
-    resolver: zodResolver(examSchema),
     defaultValues: {
-      examName: "",
       courseId: "",
-      heldAt: null,
+      questionnaireId: "",
+      heldAt: "",
+      examType: "",
+      questionAmount: "",
+      passingScore: "",
+      gradeThresholds: { "2": "", "3": "", "4": "", "5": "" },
     },
   });
 
+  // Open dialog for add/edit
   const openDialog = (exam = null) => {
     setIsEditing(!!exam);
     setCurrentExam(exam);
-    form.reset(exam || {});
+    if (exam) {
+      // Parse correctLimit for kollokvium
+      let gradeThresholds = { "2": "", "3": "", "4": "", "5": "" };
+      if (exam.examType === "kollokvium" && exam.correctLimit) {
+        const vals = exam.correctLimit.split(";");
+        gradeLabels.forEach((g, i) => (gradeThresholds[g] = vals[i] || ""));
+      }
+      form.reset({
+        courseId: exam.courseId,
+        questionnaireId: exam.questionnaireId,
+        heldAt: exam.heldAt,
+        examType: exam.examType,
+        questionAmount: exam.questionAmount,
+        passingScore: exam.examType === "beugró" ? exam.correctLimit : "",
+        gradeThresholds,
+      });
+    } else {
+      form.reset({
+        courseId: "",
+        questionnaireId: "",
+        heldAt: "",
+        examType: "",
+        questionAmount: "",
+        passingScore: "",
+        gradeThresholds: { "2": "", "3": "", "4": "", "5": "" },
+      });
+    }
     setIsDialogOpen(true);
   };
 
   const closeDialog = () => {
     setIsDialogOpen(false);
     setCurrentExam(null);
+    form.reset();
   };
 
+  // Save (add or edit)
   const handleSave = (data) => {
-    if (isEditing) {
-      setExams((prev) =>
-        prev.map((exam) => (exam.id === currentExam.id ? { ...exam, ...data } : exam))
-      );
+    if (!data.courseId || !data.questionnaireId || !data.heldAt || !data.examType || !data.questionAmount) {
+      toast("Minden mező kitöltése kötelező!");
+      return;
+    }
+    let correctLimit = "";
+    if (data.examType === "beugró") {
+      if (!data.passingScore) {
+        toast("Add meg a ponthatárt!");
+        return;
+      }
+      correctLimit = data.passingScore;
     } else {
-      setExams((prev) => [...prev, { id: Date.now(), ...data }]);
+      // kollokvium
+      correctLimit = gradeLabels.map((g) => data.gradeThresholds[g] || "").join(";");
+      if (!correctLimit.split(";").every((v) => v)) {
+        toast("Minden érdemjegyhez adj meg ponthatárt!");
+        return;
+      }
+    }
+    const newExam = {
+      id: isEditing ? currentExam.id : Date.now(),
+      courseId: data.courseId,
+      questionnaireId: data.questionnaireId,
+      heldAt: data.heldAt,
+      examType: data.examType,
+      questionAmount: data.questionAmount,
+      correctLimit,
+    };
+    if (isEditing) {
+      setExams((prev) => prev.map((e) => (e.id === currentExam.id ? newExam : e)));
+      toast("Vizsga módosítva!");
+    } else {
+      setExams((prev) => [...prev, newExam]);
+      toast("Vizsga hozzáadva!");
     }
     closeDialog();
   };
 
+  // Delete exam
   const handleDelete = (id) => {
-    setExams((prev) => prev.filter((exam) => exam.id !== id));
+    setExams((prev) => prev.filter((e) => e.id !== id));
+    toast("Vizsga törölve!");
   };
+
+  // Helper for displaying course/questionnaire names
+  const getCourseName = (code) => dummyCourses.find((c) => c.code === code)?.name || code;
+  const getQuestionnaireLabel = (id) => dummyQuestionBanks.find((q) => q.id === Number(id))?.label || id;
 
   return (
     <div className="p-6">
-      <h1 className="heading-primary">Exam Management</h1>
+      <h1 className="heading-primary mb-4">Vizsgák kezelése</h1>
       <Button onClick={() => openDialog()} className="mb-4">
-        Add Exam
+        Új vizsga létrehozása
       </Button>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Course ID</TableHead>
-            <TableHead>Held At</TableHead>
-            <TableHead>Exam Type</TableHead>
-            <TableHead>Question Count</TableHead>
-            <TableHead>Passing Score</TableHead>
-
-            <TableHead>Actions</TableHead>
+            <TableHead>Course</TableHead>
+            <TableHead>Question Bank</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Type</TableHead>
+            <TableHead>Number of Questions</TableHead>
+            <TableHead>threshhold</TableHead>
+            <TableHead>Operations</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {exams.map((exam) => (
             <TableRow key={exam.id}>
-              <TableCell>{exam.courseId}</TableCell>
+              <TableCell>{getCourseName(exam.courseId)}</TableCell>
+              <TableCell>{getQuestionnaireLabel(exam.questionnaireId)}</TableCell>
               <TableCell>
-                {exam.heldAt ? format(new Date(exam.heldAt), "PPP") : "N/A"}
+                {exam.heldAt ? format(new Date(exam.heldAt), "yyyy-MM-dd HH:mm") : ""}
               </TableCell>
-              <TableCell>{exam.examType}</TableCell>
-              <TableCell>{exam.questionCount}</TableCell>
-              <TableCell>{exam.passingScore || "N/A"}</TableCell>
+              <TableCell className="capitalize">{exam.examType}</TableCell>
+              <TableCell>{exam.questionAmount}</TableCell>
               <TableCell>
-                <Button
-                  variant="outline"
-                  onClick={() => openDialog(exam)}
-                  className="mr-2"
-                >
+                {exam.examType === "beugró"
+                  ? `Sikeres: ${exam.correctLimit} jó válasz`
+                  : gradeLabels
+                      .map((g, i) => `${g}: ${exam.correctLimit.split(";")[i] || "-"}`)
+                      .join(", ")}
+              </TableCell>
+              <TableCell>
+                <Button variant="outline" onClick={() => openDialog(exam)} className="mr-2">
                   Edit
                 </Button>
-                <Button
-                  variant="destructive"
-                  onClick={() => handleDelete(exam.id)}
-                >
+                <Button variant="destructive" onClick={() => handleDelete(exam.id)}>
                   Delete
                 </Button>
               </TableCell>
@@ -138,13 +205,19 @@ const Exams = () => {
         </TableBody>
       </Table>
 
+      {/* Add/Edit Exam Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{isEditing ? "Edit Exam" : "Add Exam"}</DialogTitle>
+            <DialogTitle>{isEditing ? "Edit Exam" : "Create new Exam"}</DialogTitle>
           </DialogHeader>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSave)} className="space-y-4">
+            <form
+              onSubmit={form.handleSubmit(handleSave)}
+              className="space-y-4"
+              autoComplete="off"
+            >
+              {/* Kurzus választó */}
               <FormField
                 control={form.control}
                 name="courseId"
@@ -157,37 +230,32 @@ const Exams = () => {
                           <Button
                             variant="outline"
                             role="combobox"
-                            aria-expanded={field.value ? "true" : "false"}
-                            className={cn(
-                              "w-full justify-between",
-                              !field.value && "text-muted-foreground"
-                            )}
+                            className={cn("w-full justify-between", !field.value && "text-muted-foreground")}
                           >
-                            {field.value
-                              ? courses.find((course) => course.value === field.value)?.label
-                              : "Select a course"}
-                            {/* <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" /> */}
+                            {getCourseName(field.value) || "Choose a course"}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
                       <PopoverContent className="w-full p-0">
                         <Command>
-                          <CommandInput placeholder="Search courses..." />
+                          <CommandInput placeholder="Kurzus keresése..." />
                           <CommandList>
-                            <CommandEmpty>No courses found.</CommandEmpty>
+                            <CommandEmpty>Not found</CommandEmpty>
                             <CommandGroup>
-                              {courses.map((course) => (
+                              {dummyCourses.map((course) => (
                                 <CommandItem
-                                  key={course.value}
-                                  onSelect={() => field.onChange(course.value)}
+                                  key={course.code}
+                                  value={course.code}
+                                  onSelect={() => field.onChange(course.code)}
                                 >
                                   <Check
                                     className={cn(
                                       "mr-2 h-4 w-4",
-                                      field.value === course.value ? "opacity-100" : "opacity-0"
+                                      field.value === course.code ? "opacity-100" : "opacity-0"
                                     )}
                                   />
-                                  {course.label}
+                                  {course.name}
                                 </CommandItem>
                               ))}
                             </CommandGroup>
@@ -200,9 +268,10 @@ const Exams = () => {
                 )}
               />
 
+              {/* Kérdésbank választó */}
               <FormField
                 control={form.control}
-                name="questionBankId"
+                name="questionnaireId"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Question Bank</FormLabel>
@@ -212,41 +281,32 @@ const Exams = () => {
                           <Button
                             variant="outline"
                             role="combobox"
-                            aria-expanded={field.value ? "true" : "false"}
-                            className={cn(
-                              "w-full justify-between",
-                              !field.value && "text-muted-foreground"
-                            )}
+                            className={cn("w-full justify-between", !field.value && "text-muted-foreground")}
                           >
-                            {field.value
-                              ? questionbanks.find(
-                                  (bank) => bank.value === field.value
-                                )?.label
-                              : "Select a question bank"}
+                            {getQuestionnaireLabel(field.value) || "Válassz kérdésbankot"}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
                       <PopoverContent className="w-full p-0">
                         <Command>
-                          <CommandInput placeholder="Search question banks..." />
+                          <CommandInput placeholder="Kérdésbank keresése..." />
                           <CommandList>
-                            <CommandEmpty>No question banks found.</CommandEmpty>
+                            <CommandEmpty>Not found.</CommandEmpty>
                             <CommandGroup>
-                              {questionbanks.map((bank) => (
+                              {dummyQuestionBanks.map((qb) => (
                                 <CommandItem
-                                  key={bank.value}
-                                  onSelect={() => field.onChange(bank.value)}
+                                  key={qb.id}
+                                  value={qb.id}
+                                  onSelect={() => field.onChange(qb.id)}
                                 >
                                   <Check
                                     className={cn(
                                       "mr-2 h-4 w-4",
-                                      field.value === bank.value
-                                        ? "opacity-100"
-                                        : "opacity-0"
+                                      field.value === qb.id ? "opacity-100" : "opacity-0"
                                     )}
                                   />
-                                  {bank.label}
+                                  {qb.label}
                                 </CommandItem>
                               ))}
                             </CommandGroup>
@@ -258,6 +318,8 @@ const Exams = () => {
                   </FormItem>
                 )}
               />
+
+              {/* Időpont */}
               <FormField
                 control={form.control}
                 name="heldAt"
@@ -302,143 +364,143 @@ const Exams = () => {
                   </FormItem>
                 )}
               />
+
+              {/* Vizsga típusa */}
               <FormField
-                  control={form.control}
-                  name="examType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Exam Type</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              role="combobox"
-                              aria-expanded={field.value ? "true" : "false"}
-                              className={cn(
-                                "w-full justify-between",
-                                !field.value && "text-muted-foreground"
-                              )}
-                            >
-                              {field.value || "Select exam type"}
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-full p-0">
-                          <Command>
-                            <CommandList>
-                              <CommandGroup>
-                                {["Screening Exam", "Colloquium"].map((type) => (
-                                  <CommandItem
-                                    key={type}
-                                    onSelect={() => field.onChange(type)}
-                                  >
-                                    <Check
-                                      className={cn(
-                                        "mr-2 h-4 w-4",
-                                        field.value === type ? "opacity-100" : "opacity-0"
-                                      )}
-                                    />
-                                    {type}
-                                  </CommandItem>
-                                ))}
-                              </CommandGroup>
-                            </CommandList>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                control={form.control}
+                name="examType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Vizsga típusa</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn("w-full justify-between", !field.value && "text-muted-foreground")}
+                          >
+                            {field.value
+                              ? field.value === "beugró"
+                                ? "Beugró"
+                                : "Kollokvium"
+                              : "Válassz típust"}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-full p-0">
+                        <Command>
+                          <CommandList>
+                            <CommandGroup>
+                              <CommandItem onSelect={() => field.onChange("beugró")}>
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    field.value === "beugró" ? "opacity-100" : "opacity-0"
+                                  )}
+                                />
+                                Beugró
+                              </CommandItem>
+                              <CommandItem onSelect={() => field.onChange("kollokvium")}>
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    field.value === "kollokvium" ? "opacity-100" : "opacity-0"
+                                  )}
+                                />
+                                Kollokvium
+                              </CommandItem>
+                            </CommandGroup>
+                          </CommandList>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Kérdések száma */}
+              <FormField
+                control={form.control}
+                name="questionAmount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Number of questions</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        min={1}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        required
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Ponthatár(ak) */}
+              {form.watch("examType") === "beugró" && (
                 <FormField
                   control={form.control}
-                  name="questionCount"
+                  name="passingScore"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Number of Questions</FormLabel>
+                      <FormLabel>Threshhold</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
-                          placeholder="Enter number of questions"
-                          onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : "")}
-                          value={field.value || ""}
                           min={1}
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                          required
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-
-                {form.watch("examType") === "Screening Exam" && (
-                  <FormField
-                    control={form.control}
-                    name="passingScore"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Passing Score</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="number"
-                            placeholder="Enter passing score"
-                            onChange={(e) => field.onChange(e.target.value ? parseInt(e.target.value, 10) : "")}
-                            value={field.value || ""}
-                            min={0}
-                            max={form.watch("questionCount") || 0}
-                            step={1}
-                            disabled={form.watch("examType") !== "Screening Exam"}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
-
-                {form.watch("examType") === "Colloquium" && (
-                  <FormField
-                    control={form.control}
-                    name="gradeThresholds"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Grade Thresholds</FormLabel>
-                        <FormControl>
-                          <div className="space-y-2">
-                            {["2", "3", "4", "5"].map((grade, index) => {
-                              const questionCount = form.watch("questionCount") || 0;
-                              const defaultThreshold = Math.ceil(
-                                questionCount * [0.5, 0.65, 0.8, 0.9][index]
-                              );
-                              return (
-                                <div key={grade} className="flex items-center space-x-2">
-                                  <span>{grade}:</span>
-                                  <Input
-                                    type="number"
-                                    placeholder={`Score for grade ${grade}`}
-                                    value={field.value?.[grade] || defaultThreshold}
-                                    onChange={(e) =>
-                                      field.onChange({
-                                        ...field.value,
-                                        [grade]: e.target.value,
-                                      })
-                                    }
-                                  />
-                                </div>
-                              );
-                            })}
+              )}
+              {form.watch("examType") === "kollokvium" && (
+                <FormField
+                  control={form.control}
+                  name="gradeThresholds"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Threshhold</FormLabel>
+                      <div className="grid grid-cols-2 gap-2">
+                        {gradeLabels.map((grade) => (
+                          <div key={grade} className="flex items-center gap-2">
+                            <span>{grade}:</span>
+                            <Input
+                              type="number"
+                              min={1}
+                              value={field.value?.[grade] || ""}
+                              onChange={(e) =>
+                                field.onChange({
+                                  ...field.value,
+                                  [grade]: e.target.value,
+                                })
+                              }
+                              required
+                            />
                           </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
+                        ))}
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
               <DialogFooter>
                 <Button variant="outline" onClick={closeDialog}>
                   Cancel
                 </Button>
-                <Button type="submit">{isEditing ? "Save Changes" : "Add Exam"}</Button>
+                <Button type="submit">{isEditing ? "Save" : "Create"}</Button>
               </DialogFooter>
             </form>
           </Form>
