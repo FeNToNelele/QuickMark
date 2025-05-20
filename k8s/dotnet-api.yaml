@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: quickmarkweb-server
-          image: quickmarkweb-server:latest
+          image: fentonelele/quickmarkweb-server:latest
           ports:
             - containerPort: 80
           env:
