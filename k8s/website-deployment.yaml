@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quickmarkweb-client
+  labels:
+    app: quickmarkweb-client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quickmarkweb-client
+  template:
+    metadata:
+      labels:
+        app: quickmarkweb-client
+    spec:
+      containers:
+        - name: quickmarkweb-client
+          image: quickmarkweb-client:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quickmarkweb-client
+spec:
+  selector:
+    app: quickmarkweb-client
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  # Change to LoadBalancer if your cluster supports it, or use NodePort for local minikube
+  type: LoadBalancer

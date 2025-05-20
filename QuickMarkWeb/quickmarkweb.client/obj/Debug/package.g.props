@@ -14,7 +14,7 @@
     <PackageJsonDependenciesRadixUiReactLabel Condition="$(PackageJsonDependenciesRadixUiReactLabel) == ''">^2.1.4</PackageJsonDependenciesRadixUiReactLabel>
     <PackageJsonDependenciesRadixUiReactNavigationMenu Condition="$(PackageJsonDependenciesRadixUiReactNavigationMenu) == ''">^1.2.10</PackageJsonDependenciesRadixUiReactNavigationMenu>
     <PackageJsonDependenciesRadixUiReactPopover Condition="$(PackageJsonDependenciesRadixUiReactPopover) == ''">^1.1.11</PackageJsonDependenciesRadixUiReactPopover>
-    <PackageJsonDependenciesRadixUiReactSlot Condition="$(PackageJsonDependenciesRadixUiReactSlot) == ''">^1.2.0</PackageJsonDependenciesRadixUiReactSlot>
+    <PackageJsonDependenciesRadixUiReactSlot Condition="$(PackageJsonDependenciesRadixUiReactSlot) == ''">^1.2.2</PackageJsonDependenciesRadixUiReactSlot>
     <PackageJsonDependenciesShadcnUi Condition="$(PackageJsonDependenciesShadcnUi) == ''">^0.0.4</PackageJsonDependenciesShadcnUi>
     <PackageJsonDependenciesTailwindcssVite Condition="$(PackageJsonDependenciesTailwindcssVite) == ''">^4.1.4</PackageJsonDependenciesTailwindcssVite>
     <PackageJsonDependenciesClassVarianceAuthority Condition="$(PackageJsonDependenciesClassVarianceAuthority) == ''">^0.7.1</PackageJsonDependenciesClassVarianceAuthority>
@@ -25,9 +25,9 @@
     <PackageJsonDependenciesLucideReact Condition="$(PackageJsonDependenciesLucideReact) == ''">^0.503.0</PackageJsonDependenciesLucideReact>
     <PackageJsonDependenciesNextThemes Condition="$(PackageJsonDependenciesNextThemes) == ''">^0.4.6</PackageJsonDependenciesNextThemes>
     <PackageJsonDependenciesQuickmarkwebClient Condition="$(PackageJsonDependenciesQuickmarkwebClient) == ''">file:</PackageJsonDependenciesQuickmarkwebClient>
-    <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^18.2.0</PackageJsonDependenciesReact>
+    <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^18.3.1</PackageJsonDependenciesReact>
     <PackageJsonDependenciesReactDayPicker Condition="$(PackageJsonDependenciesReactDayPicker) == ''">^8.10.1</PackageJsonDependenciesReactDayPicker>
-    <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^18.2.0</PackageJsonDependenciesReactDom>
+    <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^18.3.1</PackageJsonDependenciesReactDom>
     <PackageJsonDependenciesReactHookForm Condition="$(PackageJsonDependenciesReactHookForm) == ''">^7.56.1</PackageJsonDependenciesReactHookForm>
     <PackageJsonDependenciesReactRouterDom Condition="$(PackageJsonDependenciesReactRouterDom) == ''">^7.5.1</PackageJsonDependenciesReactRouterDom>
     <PackageJsonDependenciesShadcn Condition="$(PackageJsonDependenciesShadcn) == ''">^2.5.0</PackageJsonDependenciesShadcn>

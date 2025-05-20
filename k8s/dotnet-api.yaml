@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quickmarkweb-server
+  labels:
+    app: quickmarkweb-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quickmarkweb-server
+  template:
+    metadata:
+      labels:
+        app: quickmarkweb-server
+    spec:
+      containers:
+        - name: quickmarkweb-server
+          image: quickmarkweb-server:latest
+          ports:
+            - containerPort: 80
+          env:
+            # add environment variables here if needed
+            # - name: ASPNETCORE_ENVIRONMENT
+            #   value: "Production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quickmarkweb-server
+spec:
+  selector:
+    app: quickmarkweb-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
