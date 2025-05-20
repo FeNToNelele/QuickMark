@@ -3,8 +3,9 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import axios from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -15,14 +16,11 @@ const uploadSchema = z.object({
     .refine(
       (file) => file && file[0]?.name.endsWith(".gift"),
       { message: "Only GIFT files allowed." }
-  ),
+    ),
 });
 
 const Courses = () => {
-  const [courses, setCourses] = useState([
-    { coursecode: "COURSE123", coursename: "Course 1" },
-    { coursecode: "COURSE456", coursename: "Course 2" },
-  ]);
+  const [courses, setCourses] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({ coursecode: "", coursename: "" });
   const [isEditing, setIsEditing] = useState(false);
@@ -36,28 +34,58 @@ const Courses = () => {
     },
   });
 
+  // Fetch courses on mount
+  useEffect(() => {
+    axios.get("/Course")
+      .then(res => setCourses(res.data.map(c => ({
+        coursecode: c.code,
+        coursename: c.name
+      }))))
+      .catch(() => toast("Failed to load courses"));
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleAddOrEdit = () => {
-    if (isEditing) {
-      setCourses((prev) =>
-        prev.map((course) =>
-          course.coursecode === formData.coursecode ? { ...course, coursename: formData.coursename } : course
-        )
-      );
-    } else {
-      setCourses((prev) => [...prev, { coursecode: formData.coursecode, coursename: formData.coursename }]);
+  const handleAddOrEdit = async () => {
+    if (!formData.coursecode || !formData.coursename) {
+      toast("Fill in all fields!");
+      return;
     }
-    setIsDialogOpen(false);
-    setFormData({ coursecode: "", coursename: "" });
-    setIsEditing(false);
+    try {
+      if (isEditing) {
+        await axios.put(`/Course/${formData.coursecode}`, {
+          code: formData.coursecode,
+          name: formData.coursename,
+        });
+        setCourses((prev) =>
+          prev.map((course) =>
+            course.coursecode === formData.coursecode ? { ...course, coursename: formData.coursename } : course
+          )
+        );
+        toast("Course updated!");
+      } else {
+        await axios.post("/Course", {
+          code: formData.coursecode,
+          name: formData.coursename,
+        });
+        setCourses((prev) => [...prev, { coursecode: formData.coursecode, coursename: formData.coursename }]);
+        toast("Course added!");
+      }
+      setIsDialogOpen(false);
+      setFormData({ coursecode: "", coursename: "" });
+      setIsEditing(false);
+    } catch {
+      toast("Failed to save course.");
+    }
   };
 
-  const handleDelete = (coursecode) => {
+  const handleDelete = async (coursecode) => {
+    // If you have a DELETE endpoint, call it here. Otherwise, just remove locally.
     setCourses((prev) => prev.filter((course) => course.coursecode !== coursecode));
+    toast("Course deleted!");
   };
 
   const openEditDialog = (course) => {
@@ -77,31 +105,20 @@ const Courses = () => {
     setUploadDialogOpen(true);
   };
 
-  const handleUpload = (data) => {
-    const formData = new FormData();
-    formData.append("coursecode", selectedCourse.coursecode);
-    formData.append("giftFile", data.giftFile[0]);
-
-    // FIXME Replace with actual API endpoint
-  
-    // fetch("/api/upload-question-bank", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       toast("Question bank uploaded successfully!");
-    //       setUploadDialogOpen(false);
-    //       uploadForm.reset();
-    //     } else {
-    //       toast("Failed to upload question bank.");
-    //     }
-    //   })
-    //   .catch(() => toast("An error occurred while uploading the question bank."));
-    toast("Question bank uploaded successfully!");
-    setUploadDialogOpen(false);
-    uploadForm.reset();
-  
+  const handleUpload = async (data) => {
+    const formDataObj = new FormData();
+    formDataObj.append("courseCode", selectedCourse.coursecode);
+    formDataObj.append("giftFile", data.giftFile[0]);
+    try {
+      await axios.post("/Questionnaire", formDataObj, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      toast("Question bank uploaded successfully!");
+      setUploadDialogOpen(false);
+      uploadForm.reset();
+    } catch {
+      toast("Failed to upload question bank.");
+    }
   };
 
   return (

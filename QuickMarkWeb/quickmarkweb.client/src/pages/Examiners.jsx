@@ -64,10 +64,10 @@ const Examiners = () => {
     closeDialog();
   };
 
-  const handleDelete = (neptun) => {
-    setExaminers((prev) => prev.filter((examiner) => examiner.neptun !== neptun));
-    toast("Examiner deleted successfully!");
-  };
+  // const handleDelete = (neptun) => {
+  //   setExaminers((prev) => prev.filter((examiner) => examiner.neptun !== neptun));
+  //   toast("Examiner deleted successfully!");
+  // };
 
   return (
     <div className="p-6">
@@ -92,9 +92,9 @@ const Examiners = () => {
                 <Button variant="outline" onClick={() => openDialog(examiner)} className="mr-2">
                   Edit
                 </Button>
-                <Button variant="destructive" onClick={() => handleDelete(examiner.neptun)}>
+                {/* <Button variant="destructive" onClick={() => handleDelete(examiner.neptun)}>
                   Delete
-                </Button>
+                </Button> */}
               </TableCell>
             </TableRow>
           ))}

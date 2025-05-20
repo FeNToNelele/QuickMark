@@ -12,6 +12,7 @@ import Exams from './pages/Exams';
 import GenerateExamSheets from './pages/GenerateExamSheet';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import Register from './pages/Register';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
 
                         {/* Public route */}
                         <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
 
                         {/* Protected routes */}
                         <Route

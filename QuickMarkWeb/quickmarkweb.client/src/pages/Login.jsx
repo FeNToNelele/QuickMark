@@ -8,7 +8,8 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { login } = useAuth();
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!neptun || !password) {
@@ -16,12 +17,13 @@ function Login() {
             return;
         }
 
-        // FIXME replace with actual login logic
-        console.log('Logging in...');
-        setError('');
-        login("dummyToken")
-        
-        window.location.href = '/dashboard';
+        try {
+            await login(neptun, password);
+            setError('');
+            window.location.href = '/dashboard';
+        } catch (err) {
+            setError('Invalid credentials or server error.');
+        }
     };
 
     return (

@@ -4,9 +4,10 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import axios from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import jsPDF from "jspdf";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -29,6 +30,7 @@ const exams = [
 
 const GenerateExamSheets = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [examOptions, setExamOptions] = useState([]);
 
   const form = useForm({
     resolver: zodResolver(generateExamSchema),
@@ -38,43 +40,75 @@ const GenerateExamSheets = () => {
     },
   });
 
-    // FIXME Replace with actual API endpoint
+  useEffect(() => {
+    axios.get("/Exam/exams")
+      .then(res => {
+        if (Array.isArray(res.data)) {
+          setExamOptions(
+            res.data.map((exam) => ({
+              label: `${exam.id} - ${exam.examType === "beugró" ? "Entry Test" : "Final Exam"} (${exam.heldAt?.slice(0, 10)})`,
+              value: String(exam.id),
+            }))
+          );
+        }
+      })
+      .catch(() => toast("Failed to load exams."));
+  }, []);
 
-    // fetch("/api/generate-exam-sheets", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       toast("Exam sheets generated successfully!");
-    //       form.reset();
-    //     } else {
-    //       toast("Failed to generate exam sheets.");
-    //     }
-    //   })
-    //   .catch(() => toast("An error occurred while generating exam sheets."));
-  const handleGenerate = (data) => {
-    // Simulate PDF generation
-    const doc = new jsPDF();
-    doc.setFontSize(16);
-    doc.text("Sample Exam Sheet", 10, 10);
-    doc.text(`Exam ID: ${data.examId}`, 10, 20);
-    doc.text("Student List:", 10, 30);
+  const handleGenerate = async (data) => {
+    if (!data.examId || !data.studentCsv) {
+      toast("Please select an exam and upload a CSV file.");
+      return;
+    }
 
-    // Simulate reading CSV data
-    const students = ["ABC123", "DEF456", "GHI789"]; // Replace with parsed CSV data
-    students.forEach((student, index) => {
-      doc.text(`${index + 1}. ${student}`, 10, 40 + index * 10);
-    });
+    const formData = new FormData();
+    formData.append("studentCsv", data.studentCsv[0]);
 
-    // Add a QR code (optional, for demonstration)
-    doc.text("QR Code Placeholder", 10, 80);
+    try {
+      // First, get the exam details (needed for backend)
+      const examRes = await axios.get(`/Exam/exam/${data.examId}/generatesheets`);
+      const examDetails = examRes.data;
 
-    // Save the PDF
-    doc.save("exam-sheets.pdf");
+      // Prepare request payload
+      const payload = {
+        ...examDetails,
+        // You may need to adjust this depending on backend expectations
+        // For now, we send the CSV file as a separate field
+      };
 
-    toast("Exam sheets generated successfully!");
-    form.reset();
+      // Send the request to generate the PDF
+      // If your backend expects multipart/form-data with the CSV, use formData
+      // If it expects JSON + CSV, you may need to adjust backend or send both
+      // Here, let's assume you POST to /Exam/exam/{id}/generatesheets with the CSV as form-data
+
+      formData.append("examData", new Blob([JSON.stringify(payload)], { type: "application/json" }));
+
+      const response = await axios.post(
+        `/Exam/exam/${data.examId}/generatesheets`,
+        formData,
+        {
+          responseType: "blob",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Download the PDF
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "exam-sheets.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      toast("Exam sheets generated successfully!");
+      form.reset();
+      setIsDialogOpen(false);
+    } catch (err) {
+      toast("Failed to generate exam sheets.");
+    }
   };
 
   return (
@@ -107,7 +141,7 @@ const GenerateExamSheets = () => {
                             className="w-full justify-between"
                           >
                             {field.value
-                              ? exams.find((exam) => exam.value === field.value)?.label
+                              ? examOptions.find((exam) => exam.value === field.value)?.label
                               : "Select an exam"}
                           </Button>
                         </FormControl>
@@ -118,7 +152,7 @@ const GenerateExamSheets = () => {
                           <CommandList>
                             <CommandEmpty>No exams found.</CommandEmpty>
                             <CommandGroup>
-                              {exams.map((exam) => (
+                              {examOptions.map((exam) => (
                                 <CommandItem
                                   key={exam.value}
                                   onSelect={() => field.onChange(exam.value)}

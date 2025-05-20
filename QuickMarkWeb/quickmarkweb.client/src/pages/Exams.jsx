@@ -6,54 +6,45 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import axios from "@/lib/axios";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { hu } from "date-fns/locale";
 import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-// Dummy data for courses and question banks
-const dummyCourses = [
-  { code: "COURSE123", name: "Bevezetés a programozásba" },
-  { code: "COURSE456", name: "Adatbázisok alapjai" },
-];
-
-const dummyQuestionBanks = [
-  { id: 1, label: "Bevprog 2024 tavasz", courseCode: "COURSE123" },
-  { id: 2, label: "Adatbázisok 2024 tavasz", courseCode: "COURSE456" },
-];
-
-// Dummy initial exams
-const dummyExams = [
-  {
-    id: 1,
-    courseId: "COURSE123",
-    questionnaireId: 1,
-    heldAt: "2025-06-01T10:00",
-    examType: "beugró",
-    questionAmount: 10,
-    correctLimit: "6",
-  },
-  {
-    id: 2,
-    courseId: "COURSE456",
-    questionnaireId: 2,
-    heldAt: "2025-06-10T09:00",
-    examType: "kollokvium",
-    questionAmount: 20,
-    correctLimit: "10;14;17;19", // 2:10, 3:14, 4:17, 5:19
-  },
-];
 
 const gradeLabels = ["2", "3", "4", "5"];
 
 const Exams = () => {
-  const [exams, setExams] = useState(dummyExams);
+  const [exams, setExams] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [questionBanks, setQuestionBanks] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentExam, setCurrentExam] = useState(null);
 
+  // Fetch courses and question banks on mount
+  useEffect(() => {
+    axios.get("/Course")
+      .then(res => setCourses(Array.isArray(res.data) ? res.data : []))
+      .catch(() => toast("Kurzusok betöltése sikertelen!"));
+
+    axios.get("/Questionnaire")
+      .then(res => setQuestionBanks(Array.isArray(res.data) ? res.data : []))
+      .catch(() => toast("Kérdésbankok betöltése sikertelen!"));
+
+    fetchExams();
+  }, []);
+  const fetchExams = () => {
+    axios.get("/Exam/exams")
+      .then(res => {
+        // Ha nem tömb, akkor üres tömböt adunk vissza
+        setExams(Array.isArray(res.data) ? res.data : []);
+      })
+      .catch(() => toast("Vizsgák betöltése sikertelen!"));
+  };
   // Form state
   const form = useForm({
     defaultValues: {
@@ -108,7 +99,7 @@ const Exams = () => {
   };
 
   // Save (add or edit)
-  const handleSave = (data) => {
+  const handleSave = async (data) => {
     if (!data.courseId || !data.questionnaireId || !data.heldAt || !data.examType || !data.questionAmount) {
       toast("Minden mező kitöltése kötelező!");
       return;
@@ -128,8 +119,8 @@ const Exams = () => {
         return;
       }
     }
-    const newExam = {
-      id: isEditing ? currentExam.id : Date.now(),
+
+    const payload = {
       courseId: data.courseId,
       questionnaireId: data.questionnaireId,
       heldAt: data.heldAt,
@@ -137,25 +128,41 @@ const Exams = () => {
       questionAmount: data.questionAmount,
       correctLimit,
     };
-    if (isEditing) {
-      setExams((prev) => prev.map((e) => (e.id === currentExam.id ? newExam : e)));
-      toast("Vizsga módosítva!");
-    } else {
-      setExams((prev) => [...prev, newExam]);
-      toast("Vizsga hozzáadva!");
+
+    try {
+      if (isEditing && currentExam) {
+        await axios.put(`/Exam/edit/exam/${currentExam.id}`, { id: currentExam.id, ...payload });
+        toast("Vizsga módosítva!");
+      } else {
+        await axios.post("/Exam/add/exam", payload);
+        toast("Vizsga hozzáadva!");
+      }
+      fetchExams();
+      closeDialog();
+    } catch {
+      toast("Mentés sikertelen!");
     }
-    closeDialog();
   };
 
-  // Delete exam
+  // Delete exam (no endpoint, just remove locally)
   const handleDelete = (id) => {
     setExams((prev) => prev.filter((e) => e.id !== id));
     toast("Vizsga törölve!");
+    // If you have a DELETE endpoint, call it here
+    // await axios.delete(`/Exam/delete/exam/${id}`);
+    // fetchExams();
   };
 
   // Helper for displaying course/questionnaire names
-  const getCourseName = (code) => dummyCourses.find((c) => c.code === code)?.name || code;
-  const getQuestionnaireLabel = (id) => dummyQuestionBanks.find((q) => q.id === Number(id))?.label || id;
+  const getCourseName = (code) =>
+    Array.isArray(courses)
+      ? courses.find((c) => c.code === code)?.name || code
+      : code;
+
+  const getQuestionnaireLabel = (id) =>
+    Array.isArray(questionBanks)
+      ? questionBanks.find((q) => q.id === Number(id))?.label || id
+      : id;
 
   return (
     <div className="p-6">
@@ -166,24 +173,24 @@ const Exams = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Course</TableHead>
-            <TableHead>Question Bank</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Number of Questions</TableHead>
-            <TableHead>threshhold</TableHead>
-            <TableHead>Operations</TableHead>
+            <TableHead>Kurzus</TableHead>
+            <TableHead>Kérdésbank</TableHead>
+            <TableHead>Időpont</TableHead>
+            <TableHead>Típus</TableHead>
+            <TableHead>Kérdések száma</TableHead>
+            <TableHead>Ponthatár</TableHead>
+            <TableHead>Műveletek</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {exams.map((exam) => (
+          {(Array.isArray(exams) ? exams : []).map((exam) => (
             <TableRow key={exam.id}>
               <TableCell>{getCourseName(exam.courseId)}</TableCell>
               <TableCell>{getQuestionnaireLabel(exam.questionnaireId)}</TableCell>
               <TableCell>
-                {exam.heldAt ? format(new Date(exam.heldAt), "yyyy-MM-dd HH:mm") : ""}
+                {exam.heldAt ? format(new Date(exam.heldAt), "yyyy-MM-dd HH:mm", { locale: hu }) : ""}
               </TableCell>
-              <TableCell className="capitalize">{exam.examType}</TableCell>
+              <TableCell className="capitalize">{exam.examType === "beugró" ? "Beugró" : "Kollokvium"}</TableCell>
               <TableCell>{exam.questionAmount}</TableCell>
               <TableCell>
                 {exam.examType === "beugró"
@@ -194,10 +201,10 @@ const Exams = () => {
               </TableCell>
               <TableCell>
                 <Button variant="outline" onClick={() => openDialog(exam)} className="mr-2">
-                  Edit
+                  Szerkesztés
                 </Button>
                 <Button variant="destructive" onClick={() => handleDelete(exam.id)}>
-                  Delete
+                  Törlés
                 </Button>
               </TableCell>
             </TableRow>
@@ -209,7 +216,7 @@ const Exams = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{isEditing ? "Edit Exam" : "Create new Exam"}</DialogTitle>
+            <DialogTitle>{isEditing ? "Vizsga szerkesztése" : "Új vizsga létrehozása"}</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form
@@ -223,7 +230,7 @@ const Exams = () => {
                 name="courseId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Course</FormLabel>
+                    <FormLabel>Kurzus</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -232,7 +239,7 @@ const Exams = () => {
                             role="combobox"
                             className={cn("w-full justify-between", !field.value && "text-muted-foreground")}
                           >
-                            {getCourseName(field.value) || "Choose a course"}
+                            {getCourseName(field.value) || "Válassz kurzust"}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </FormControl>
@@ -241,9 +248,9 @@ const Exams = () => {
                         <Command>
                           <CommandInput placeholder="Kurzus keresése..." />
                           <CommandList>
-                            <CommandEmpty>Not found</CommandEmpty>
+                            <CommandEmpty>Nincs találat</CommandEmpty>
                             <CommandGroup>
-                              {dummyCourses.map((course) => (
+                              {courses.map((course) => (
                                 <CommandItem
                                   key={course.code}
                                   value={course.code}
@@ -274,7 +281,7 @@ const Exams = () => {
                 name="questionnaireId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Question Bank</FormLabel>
+                    <FormLabel>Kérdésbank</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -292,9 +299,9 @@ const Exams = () => {
                         <Command>
                           <CommandInput placeholder="Kérdésbank keresése..." />
                           <CommandList>
-                            <CommandEmpty>Not found.</CommandEmpty>
+                            <CommandEmpty>Nincs találat.</CommandEmpty>
                             <CommandGroup>
-                              {dummyQuestionBanks.map((qb) => (
+                              {questionBanks.map((qb) => (
                                 <CommandItem
                                   key={qb.id}
                                   value={qb.id}
@@ -324,8 +331,8 @@ const Exams = () => {
                 control={form.control}
                 name="heldAt"
                 render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                    <FormLabel>Exam Date</FormLabel>
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Vizsga időpontja</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -337,9 +344,9 @@ const Exams = () => {
                             )}
                           >
                             {field.value ? (
-                              format(field.value, "PPP")
+                              format(field.value, "PPP", { locale: hu })
                             ) : (
-                              <span>Pick a date</span>
+                              <span>Válassz dátumot</span>
                             )}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
@@ -358,7 +365,7 @@ const Exams = () => {
                       </PopoverContent>
                     </Popover>
                     <FormDescription>
-                        Select the date when the exam will be held.
+                      Válaszd ki, mikor lesz a vizsga.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -427,7 +434,7 @@ const Exams = () => {
                 name="questionAmount"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Number of questions</FormLabel>
+                    <FormLabel>Kérdések száma</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
@@ -449,7 +456,7 @@ const Exams = () => {
                   name="passingScore"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Threshhold</FormLabel>
+                      <FormLabel>Ponthatár</FormLabel>
                       <FormControl>
                         <Input
                           type="number"
@@ -470,7 +477,7 @@ const Exams = () => {
                   name="gradeThresholds"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Threshhold</FormLabel>
+                      <FormLabel>Ponthatárok</FormLabel>
                       <div className="grid grid-cols-2 gap-2">
                         {gradeLabels.map((grade) => (
                           <div key={grade} className="flex items-center gap-2">
@@ -498,9 +505,9 @@ const Exams = () => {
 
               <DialogFooter>
                 <Button variant="outline" onClick={closeDialog}>
-                  Cancel
+                  Mégse
                 </Button>
-                <Button type="submit">{isEditing ? "Save" : "Create"}</Button>
+                <Button type="submit">{isEditing ? "Mentés" : "Létrehozás"}</Button>
               </DialogFooter>
             </form>
           </Form>
