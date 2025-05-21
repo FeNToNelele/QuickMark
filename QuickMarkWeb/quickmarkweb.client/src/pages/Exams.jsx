@@ -27,18 +27,18 @@ const Exams = () => {
 
   // Fetch courses and question banks on mount
   useEffect(() => {
-    axios.get("/Course")
+    axios.get("/api/Course")
       .then(res => setCourses(Array.isArray(res.data) ? res.data : []))
       .catch(() => toast("Kurzusok betöltése sikertelen!"));
 
-    axios.get("/Questionnaire")
+    axios.get("/api/Questionnaire")
       .then(res => setQuestionBanks(Array.isArray(res.data) ? res.data : []))
       .catch(() => toast("Kérdésbankok betöltése sikertelen!"));
 
     fetchExams();
   }, []);
   const fetchExams = () => {
-    axios.get("/Exam/exams")
+    axios.get("/api/Exam/api/Exams")
       .then(res => {
         // Ha nem tömb, akkor üres tömböt adunk vissza
         setExams(Array.isArray(res.data) ? res.data : []);
@@ -131,10 +131,10 @@ const Exams = () => {
 
     try {
       if (isEditing && currentExam) {
-        await axios.put(`/Exam/edit/exam/${currentExam.id}`, { id: currentExam.id, ...payload });
+        await axios.put(`/api/Exam/edit/api/Exam/${currentExam.id}`, { id: currentExam.id, ...payload });
         toast("Vizsga módosítva!");
       } else {
-        await axios.post("/Exam/add/exam", payload);
+        await axios.post("/api/Exam/add/api/Exam", payload);
         toast("Vizsga hozzáadva!");
       }
       fetchExams();
@@ -149,11 +149,11 @@ const Exams = () => {
     setExams((prev) => prev.filter((e) => e.id !== id));
     toast("Vizsga törölve!");
     // If you have a DELETE endpoint, call it here
-    // await axios.delete(`/Exam/delete/exam/${id}`);
+    // await axios.delete(`/api/Exam/delete/api/Exam/${id}`);
     // fetchExams();
   };
 
-  // Helper for displaying course/questionnaire names
+  // Helper for displaying course/api/Questionnaire names
   const getCourseName = (code) =>
     Array.isArray(courses)
       ? courses.find((c) => c.code === code)?.name || code

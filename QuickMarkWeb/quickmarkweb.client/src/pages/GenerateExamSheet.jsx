@@ -41,7 +41,7 @@ const GenerateExamSheets = () => {
   });
 
   useEffect(() => {
-    axios.get("/Exam/exams")
+    axios.get("/api/Exam/api/Exams")
       .then(res => {
         if (Array.isArray(res.data)) {
           setExamOptions(
@@ -66,7 +66,7 @@ const GenerateExamSheets = () => {
 
     try {
       // First, get the exam details (needed for backend)
-      const examRes = await axios.get(`/Exam/exam/${data.examId}/generatesheets`);
+      const examRes = await axios.get(`/api/Exam/api/Exam/${data.examId}/generatesheets`);
       const examDetails = examRes.data;
 
       // Prepare request payload
@@ -79,12 +79,12 @@ const GenerateExamSheets = () => {
       // Send the request to generate the PDF
       // If your backend expects multipart/form-data with the CSV, use formData
       // If it expects JSON + CSV, you may need to adjust backend or send both
-      // Here, let's assume you POST to /Exam/exam/{id}/generatesheets with the CSV as form-data
+      // Here, let's assume you POST to /api/Exam/api/Exam/{id}/generatesheets with the CSV as form-data
 
       formData.append("examData", new Blob([JSON.stringify(payload)], { type: "application/json" }));
 
       const response = await axios.post(
-        `/Exam/exam/${data.examId}/generatesheets`,
+        `/api/Exam/api/Exam/${data.examId}/generatesheets`,
         formData,
         {
           responseType: "blob",

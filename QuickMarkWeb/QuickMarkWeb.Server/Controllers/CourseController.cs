@@ -11,8 +11,8 @@ using System.Security.Claims;
 namespace QuickMarkWeb.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    [Authorize]
+    [Route("api/[controller]")]
+    //[Authorize]
     public class CourseController : ControllerBase
     {
         private readonly AppDbContext _context;

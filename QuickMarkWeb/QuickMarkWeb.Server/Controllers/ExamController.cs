@@ -13,7 +13,7 @@ using System.Text;
 namespace QuickMarkWeb.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [Authorize]
     public class ExamController : ControllerBase
     {

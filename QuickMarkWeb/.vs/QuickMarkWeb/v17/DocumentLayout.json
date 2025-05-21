@@ -1,26 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\",
+  "WorkspaceRootPath": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\saveresultscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\saveresultscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.shared\\questionnaire\\newquestionnairerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\questionnaire\\newquestionnairerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\giftcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\giftcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\healthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.client\\src\\pages\\register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\pages\\register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.client\\src\\lib\\utils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\lib\\utils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.client\\src\\lib\\axios.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\lib\\axios.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.client\\src\\pages\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\pages\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\questionnairecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\questionnairecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\healthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\healthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\gabor\\documents\\coding\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\examcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|d:\\programozas\\de\\szoftvertervezes\\quickmark\\quickmarkweb\\quickmarkweb.shared\\exam\\examdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\exam\\examdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +62,175 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\appsettings.json",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\appsettings.json",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\appsettings.json",
-              "RelativeToolTip": "QuickMarkWeb.Server\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-18T10:03:18.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Program.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Program.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAABgAAAApAAAAAAAAAA==",
+              "Title": "NewQuestionnaireRequest.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
+              "RelativeToolTip": "QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T09:51:00.122Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HealthController.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\HealthController.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\HealthController.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\HealthController.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\HealthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T09:49:56.925Z",
+              "WhenOpened": "2025-05-21T11:22:23.242Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ExamController.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\ExamController.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\ExamController.cs",
-              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T09:15:13.348Z",
+              "WhenOpened": "2025-05-21T11:17:17.071Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Program.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T11:00:22.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Register.jsx",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Register.jsx",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\pages\\Register.jsx",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Register.jsx",
+              "RelativeToolTip": "quickmarkweb.client\\src\\pages\\Register.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-21T10:55:17.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "utils.js",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\utils.js",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\lib\\utils.js",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\utils.js",
+              "RelativeToolTip": "quickmarkweb.client\\src\\lib\\utils.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-21T10:55:10.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "axios.js",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\axios.js",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\lib\\axios.js",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\axios.js",
+              "RelativeToolTip": "quickmarkweb.client\\src\\lib\\axios.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-21T10:55:06.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.jsx",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Login.jsx",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\pages\\Login.jsx",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Login.jsx",
+              "RelativeToolTip": "quickmarkweb.client\\src\\pages\\Login.jsx",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-05-21T10:54:48.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SaveResultsController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:52:07.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "QuestionnaireController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:52:02.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GIFTController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA1wCIAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:51:50.968Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ExamDTO.cs",
-              "DocumentMoniker": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Exam\\ExamDTO.cs",
-              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Exam\\ExamDTO.cs",
-              "ToolTip": "D:\\Programozas\\DE\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Exam\\ExamDTO.cs",
-              "RelativeToolTip": "QuickMarkWeb.Shared\\Exam\\ExamDTO.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T08:58:54.033Z",
+              "WhenOpened": "2025-05-21T11:17:07.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HealthController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\HealthController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\HealthController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\HealthController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\HealthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:51:55.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ExamController.cs",
+              "DocumentMoniker": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\ExamController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
+              "ToolTip": "C:\\Users\\gabor\\Documents\\Coding\\Szoftvertervezes\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\ExamController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:51:44.665Z",
               "EditorCaption": ""
             }
           ]

@@ -36,7 +36,7 @@ const Courses = () => {
 
   // Fetch courses on mount
   useEffect(() => {
-    axios.get("/Course")
+    axios.get("/api/Course")
       .then(res => setCourses(res.data.map(c => ({
         coursecode: c.code,
         coursename: c.name
@@ -56,7 +56,7 @@ const Courses = () => {
     }
     try {
       if (isEditing) {
-        await axios.put(`/Course/${formData.coursecode}`, {
+        await axios.put(`/api/Course/${formData.coursecode}`, {
           code: formData.coursecode,
           name: formData.coursename,
         });
@@ -67,7 +67,7 @@ const Courses = () => {
         );
         toast("Course updated!");
       } else {
-        await axios.post("/Course", {
+        await axios.post("/api/Course", {
           code: formData.coursecode,
           name: formData.coursename,
         });
@@ -110,7 +110,7 @@ const Courses = () => {
     formDataObj.append("courseCode", selectedCourse.coursecode);
     formDataObj.append("giftFile", data.giftFile[0]);
     try {
-      await axios.post("/Questionnaire", formDataObj, {
+      await axios.post("/api/Questionnaire", formDataObj, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast("Question bank uploaded successfully!");

@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     const login = async (neptun, password) => {
-        const response = await axios.post('/Auth/login', {
+        const response = await axios.post('/api/Auth/login', {
             username: neptun,
             password,
         });
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async ({ username, fullName, password, isAdmin }) => {
-        await axios.post('/Auth/register', {
+        await axios.post('/api/Auth/register', {
             username,
             password,
             fullName,

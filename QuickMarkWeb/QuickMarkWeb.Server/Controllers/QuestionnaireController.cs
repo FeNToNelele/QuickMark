@@ -8,7 +8,7 @@ using Shared.Questionnaire;
 
 namespace QuickMarkWeb.Server.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class QuestionnaireController : Controller
