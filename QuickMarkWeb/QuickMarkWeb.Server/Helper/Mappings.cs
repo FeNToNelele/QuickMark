@@ -69,7 +69,6 @@ namespace QuickMarkWeb.Server.Helper
             return new Questionnaire
             {
                 GiftFile = questionnaireRequest.GiftFile,
-                Answers = questionnaireRequest.Answers,
                 CourseCode = questionnaireRequest.CourseCode
             };
         }
@@ -80,7 +79,6 @@ namespace QuickMarkWeb.Server.Helper
             {
                 Id = questionnaire.Id,
                 GiftFile = questionnaire.GiftFile,
-                Answers = questionnaire.Answers,
                 CourseCode = questionnaire.CourseCode
             };
         }

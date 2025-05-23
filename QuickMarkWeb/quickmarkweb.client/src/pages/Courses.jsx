@@ -116,7 +116,9 @@ const Courses = () => {
       toast("Question bank uploaded successfully!");
       setUploadDialogOpen(false);
       uploadForm.reset();
-    } catch {
+    } catch (error) {
+      console.error("Upload failed:", error);
+      console.log("Error response:", error.response?.data);
       toast("Failed to upload question bank.");
     }
   };

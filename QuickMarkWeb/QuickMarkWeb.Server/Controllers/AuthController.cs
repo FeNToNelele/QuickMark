@@ -121,6 +121,7 @@ namespace QuickMarkWeb.Server.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 _logger.LogError(ex, "Error during login");
                 return StatusCode(500, "An error occurred during login");
             }

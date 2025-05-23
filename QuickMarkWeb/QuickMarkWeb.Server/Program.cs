@@ -86,19 +86,19 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
+    options.AddPolicy("ReactApp",
         builder =>
         {
             builder
-                .AllowAnyOrigin() //TODO: in production change this to .WithOrigins("https://localhost:53300")
+                .WithOrigins("https://localhost:53300", "http://localhost:53300")
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .SetIsOriginAllowedToAllowWildcardSubdomains();
         });
 });
 
 var app = builder.Build();
-
-app.UseCors("AllowAll");
 
 if (app.Environment.IsDevelopment())
 {
@@ -114,6 +114,8 @@ app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("ReactApp");
+
 
 app.UseAuthentication();
 app.UseAuthorization();

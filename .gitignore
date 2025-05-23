@@ -9,6 +9,7 @@ QuickMarkWeb/QuickMarkWeb.Server/*.suo
 QuickMarkWeb/QuickMarkWeb.Server/*.cache
 QuickMarkWeb/QuickMarkWeb.Server/*.swp
 QuickMarkWeb/quickmarkweb.client/obj/Debug/quickmarkweb.client.esproj.FileListAbsolute.txt
+QuickMarkWeb/quickmarkweb.client/package.json
 QuickMarkWeb/QuickMarkWeb.Shared/bin/Debug/net8.0/Shared.dll
 QuickMarkWeb/QuickMarkWeb.Shared/bin/Debug/net8.0/Shared.pdb
 QuickMarkWeb/QuickMarkWeb.Shared/obj/project.assets.json

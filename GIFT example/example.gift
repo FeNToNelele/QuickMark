@@ -1,0 +1,122 @@
+// This is a comment in GIFT format
+
+// Question 1
+:MCQ Question 1:
+What is the capital of France?
+A) Berlin
+B) Paris
+C) London
+D) Rome
+{=B#Paris}
+
+:MCQ Question 2:
+Which planet is known as the Red Planet?
+A) Jupiter
+B) Earth
+C) Mars
+D) Saturn
+{=C#Mars}
+
+:MCQ Question 3:
+Who painted the Starry Night?
+A) Leonardo da Vinci
+B) Vincent van Gogh
+C) Pablo Picasso
+D) Claude Monet
+{=B#Vincent van Gogh}
+
+:MCQ Question 4:
+What is the largest planet in our solar system?
+A) Earth
+B) Saturn
+C) Jupiter
+D) Uranus
+{=C#Jupiter}
+
+:MCQ Question 5:
+Which programming language is known for its use in web development?
+A) Python
+B) Java
+C) JavaScript
+D) C++
+{=C#JavaScript}
+
+:MCQ Question 6:
+What is the chemical symbol for gold?
+A) Ag
+B) Au
+C) Hg
+D) Pb
+{=B#Au}
+
+:MCQ Question 7:
+Who wrote Romeo and Juliet?
+A) William Shakespeare
+B) Jane Austen
+C) Charles Dickens
+D) J.K. Rowling
+{=A#William Shakespeare}
+
+:MCQ Question 8:
+What is the smallest country in the world?
+A) Vatican City
+B) Monaco
+C) Nauru
+D) Tuvalu
+{=A#Vatican City}
+
+:MCQ Question 9:
+Which element is the lightest in the periodic table?
+A) Hydrogen
+B) Helium
+C) Oxygen
+D) Nitrogen
+{=A#Hydrogen}
+
+:MCQ Question 10:
+Who was the first president of the United States?
+A) George Washington
+B) Thomas Jefferson
+C) Abraham Lincoln
+D) Franklin D. Roosevelt
+{=A#George Washington}
+
+:MCQ Question 11:
+What is the formula for water?
+A) H2O
+B) CO2
+C) O3
+D) CH4
+{=A#H2O}
+
+:MCQ Question 12:
+Which music group's original members were John, Paul, George, and Pete?
+A) The Rolling Stones
+B) The Beatles
+C) The Who
+D) The Beach Boys
+{=B#The Beatles}
+
+:MCQ Question 13:
+What is the capital of Australia?
+A) Sydney
+B) Melbourne
+C) Canberra
+D) Perth
+{=C#Canberra}
+
+:MCQ Question 14:
+Who discovered gravity?
+A) Galileo Galilei
+B) Isaac Newton
+C) Albert Einstein
+D) Leonardo da Vinci
+{=B#Isaac Newton}
+
+:MCQ Question 15:
+What is the chemical symbol for silver?
+A) Au
+B) Ag
+C) Hg
+D) Pb
+{=B#Ag}
