@@ -64,14 +64,14 @@ namespace QuickMarkWeb.Server.Helper
             };
         }
 
-        public static Questionnaire ToQuestionnaireModel(this NewQuestionnaireRequest questionnaireRequest)
+        /*public static Questionnaire ToQuestionnaireModel(this NewQuestionnaireRequest questionnaireRequest)
         {
             return new Questionnaire
             {
                 GiftFile = questionnaireRequest.GiftFile,
                 CourseCode = questionnaireRequest.CourseCode
             };
-        }
+        }*/
 
         public static QuestionnaireDTO ToQuestionnaireDTO(this Questionnaire questionnaire)
         {

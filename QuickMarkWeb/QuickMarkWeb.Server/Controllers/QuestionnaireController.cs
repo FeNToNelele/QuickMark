@@ -44,17 +44,35 @@ namespace QuickMarkWeb.Server.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<QuestionnaireDTO>> PostQuestionnaire([FromBody] NewQuestionnaireRequest request)
+        public async Task<ActionResult<QuestionnaireDTO>> PostQuestionnaire([FromForm] NewQuestionnaireRequest request)
         {
-            if (string.IsNullOrEmpty(request.CourseCode)) return BadRequest("Questionnaire must be assigned to a Course");
-            if (request.GiftFile == null) return BadRequest("GIFT file must be attached to request.");
+            try
+            {
+                if (string.IsNullOrEmpty(request.CourseCode)) return BadRequest("Questionnaire must be assigned to a Course");
+                if (request.GiftFile == null) return BadRequest("GIFT file must be attached to request.");
 
-            var questionnaire = request.ToQuestionnaireModel();
+                string giftFileContent;
+                using (var reader = new StreamReader(request.GiftFile.OpenReadStream()))
+                {
+                    giftFileContent = await reader.ReadToEndAsync();
+                }
 
-            _context.Questionnaires.Add(questionnaire);
-            await _context.SaveChangesAsync();
+                var newQuestionnaire = new Questionnaire
+                {
+                    CourseCode = request.CourseCode,
+                    GiftFile = giftFileContent
+                };
 
-            return CreatedAtAction(nameof(GetQuestionnaires), new { id = questionnaire.Id }, questionnaire.ToQuestionnaireDTO());
+                _context.Questionnaires.Add(newQuestionnaire);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetQuestionnaires), new { id = newQuestionnaire.Id }, newQuestionnaire.ToQuestionnaireDTO());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("UploadGIFT exception: " + ex);
+                throw;
+            }
         }
     }
 }

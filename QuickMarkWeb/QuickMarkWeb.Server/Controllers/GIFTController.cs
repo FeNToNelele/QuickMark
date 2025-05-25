@@ -32,21 +32,42 @@ namespace QuickMarkWeb.Server.Controllers
         }
 
         [HttpPost("uploadgift")]
-        public async Task<ActionResult<QuestionnaireDTO>> UploadGIFT([FromBody] NewQuestionnaireRequest questionnaire)
+        public async Task<ActionResult<QuestionnaireDTO>> UploadGIFT([FromForm] NewQuestionnaireRequest request)
         {
-            Questionnaire newQuestionnaire = questionnaire.ToQuestionnaireModel();
+            try
+            {
+                if (request.GiftFile == null || request.GiftFile.Length == 0)
+                    return BadRequest("No file uploaded.");
 
-            _context.Questionnaires.Add(newQuestionnaire);
-            await _context.SaveChangesAsync();
+                string giftFileContent;
+                using (var reader = new StreamReader(request.GiftFile.OpenReadStream()))
+                {
+                    giftFileContent = await reader.ReadToEndAsync();
+                }
 
-            var questionnaireDTO = newQuestionnaire.ToQuestionnaireDTO();
+                var newQuestionnaire = new Questionnaire
+                {
+                    CourseCode = request.CourseCode,
+                    GiftFile = giftFileContent
+                };
 
-            return CreatedAtAction(
-                actionName: "GetAllExams",
-                controllerName: "Exam",
-                routeValues: null,
-                value: questionnaireDTO
-            );
+                _context.Questionnaires.Add(newQuestionnaire);
+                await _context.SaveChangesAsync();
+
+                var questionnaireDTO = newQuestionnaire.ToQuestionnaireDTO();
+
+                return CreatedAtAction(
+                    actionName: "GetAllExams",
+                    controllerName: "Exam",
+                    routeValues: null,
+                    value: questionnaireDTO
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("UploadGIFT exception: " + ex);
+                throw;
+            }
         }
     }
 }

@@ -3,9 +3,9 @@ import axios from 'axios';
 const instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL || "https://localhost:7045",
     withCredentials: true,
-    headers: {
-        'Content-Type' : 'application/json'
-    }
+    //headers: {
+    //    'Content-Type' : 'application/json'
+    //}
 });
 
 instance.interceptors.request.use((config) => {

@@ -1,8 +1,10 @@
-﻿namespace Shared.Questionnaire
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Shared.Questionnaire
 {
     public class NewQuestionnaireRequest
     {
-        public string GiftFile { get; set; }
+        public IFormFile GiftFile { get; set; }
         public string CourseCode { get; set; }
     }
 }

@@ -108,6 +108,7 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "QuickMark API v1");
         options.RoutePrefix = "swagger";
     });
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();

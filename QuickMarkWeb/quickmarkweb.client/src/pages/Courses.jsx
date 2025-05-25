@@ -12,11 +12,10 @@ import { z } from "zod";
 
 const uploadSchema = z.object({
   giftFile: z
-    .any()
-    .refine(
-      (file) => file && file[0]?.name.endsWith(".gift"),
-      { message: "Only GIFT files allowed." }
-    ),
+    .instanceof(File)
+    .refine((file) => file.name.endsWith(".gift"), {
+      message: "Only GIFT files allowed.",
+    }),
 });
 
 const Courses = () => {
@@ -28,10 +27,13 @@ const Courses = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   const uploadForm = useForm({
-    resolver: zodResolver(uploadSchema),
     defaultValues: {
-      giftFile: null,
+      giftFile: null
     },
+    // Add validation
+    resolver: zodResolver(z.object({
+      giftFile: z.instanceof(File, { message: "Please select a file" })
+    }))
   });
 
   // Fetch courses on mount
@@ -106,19 +108,28 @@ const Courses = () => {
   };
 
   const handleUpload = async (data) => {
-    const formDataObj = new FormData();
-    formDataObj.append("courseCode", selectedCourse.coursecode);
-    formDataObj.append("giftFile", data.giftFile[0]);
     try {
-      await axios.post("/api/Questionnaire", formDataObj, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      console.log("Form data:", data); // Debug log
+      
+      const formDataObj = new FormData();
+      formDataObj.append("courseCode", selectedCourse.coursecode);
+      formDataObj.append("giftFile", data.giftFile);
+      
+      console.log("FormData entries:"); // Debug log
+      for (let pair of formDataObj.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+      await axios.post("/api/GIFT/uploadgift", formDataObj);
       toast("Question bank uploaded successfully!");
       setUploadDialogOpen(false);
       uploadForm.reset();
     } catch (error) {
       console.error("Upload failed:", error);
-      console.log("Error response:", error.response?.data);
+      if (error.response) {
+        console.log("Error response:", error.response.data);
+        console.log("Error status:", error.response.status);
+      }
       toast("Failed to upload question bank.");
     }
   };
@@ -194,7 +205,14 @@ const Courses = () => {
       </Dialog>
 
       {/* Upload Question Bank Dialog */}
-      <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
+      <Dialog
+        open={uploadDialogOpen}
+        onOpenChange={(open) => {
+          if (!open) {
+            uploadForm.reset();
+          }
+          setUploadDialogOpen(open);
+        }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Upload Question Bank</DialogTitle>
@@ -203,18 +221,28 @@ const Courses = () => {
             Upload a GIFT file for the course: <strong>{selectedCourse?.coursename}</strong>
           </p>
           <Form {...uploadForm}>
-            <form onSubmit={uploadForm.handleSubmit(handleUpload)} className="space-y-4">
+            <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  uploadForm.handleSubmit(handleUpload)(e);
+                }}
+                className="space-y-4"
+              >
               <FormField
                 control={uploadForm.control}
                 name="giftFile"
-                render={({ field }) => (
+                render={({ field: { onChange, value, ...field } }) => (
                   <FormItem>
                     <FormLabel>GIFT File</FormLabel>
                     <FormControl>
                       <Input
                         type="file"
                         accept=".gift"
-                        onChange={(e) => field.onChange(e.target.files)}
+                        onChange={(e) => {
+                          console.log("Selected file:", e.target.files?.[0]);
+                          onChange(e.target.files?.[0]);
+                        }}
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
