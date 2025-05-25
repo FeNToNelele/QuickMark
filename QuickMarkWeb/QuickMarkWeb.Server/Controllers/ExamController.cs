@@ -36,6 +36,16 @@ namespace QuickMarkWeb.Server.Controllers
             return Ok(examDTOs);
         }
 
+        [HttpGet("exams/{id}")]
+        public async Task<ActionResult<ExamDTO>> GetSpecificExam(int id)
+        {
+            var selectedExam = await _context.Exams.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (selectedExam == null) return BadRequest("Exam with given id does not exist.");
+
+            return Ok(selectedExam.ToExamDTO());
+        }
+
 
         /// <summary>
         /// Helper function to let the examinor decide which questionnaire it would like to use for the new exam that is being created.
