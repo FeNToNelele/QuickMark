@@ -10,7 +10,7 @@ namespace QuickMarkWeb.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class SaveResultsController : Controller
     {
         private readonly AppDbContext _context;

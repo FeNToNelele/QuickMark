@@ -11,7 +11,7 @@ namespace QuickMarkWeb.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class GIFTController : Controller
     {
         private readonly AppDbContext _context;

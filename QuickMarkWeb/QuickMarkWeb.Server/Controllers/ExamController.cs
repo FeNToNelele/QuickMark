@@ -36,10 +36,15 @@ namespace QuickMarkWeb.Server.Controllers
             return Ok(examDTOs);
         }
 
+        [AllowAnonymous]
         [HttpGet("exams/{id}")]
         public async Task<ActionResult<ExamDTO>> GetSpecificExam(int id)
         {
-            var selectedExam = await _context.Exams.FirstOrDefaultAsync(e => e.Id == id);
+            var selectedExam = await _context.Exams
+                .Include(e => e.Course)       // Load Course
+                .Include(e => e.User)         // Load User
+                .Include(e => e.Questionnaire) // Load Questionnaire
+                .FirstOrDefaultAsync(e => e.Id == id);
 
             if (selectedExam == null) return BadRequest("Exam with given id does not exist.");
 

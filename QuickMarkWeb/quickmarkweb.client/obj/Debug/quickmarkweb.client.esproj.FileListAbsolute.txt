@@ -2,3 +2,4 @@ D:\Programozas\DE\Szoftvertervezes\QuickMark\QuickMarkWeb\quickmarkweb.client\ob
 D:\Dokumentumok\School\Egyetem MSC\Szoftverrendszerek tervezése\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
 C:\Users\Hp\Desktop\quickmark\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
 C:\Users\gabor\Documents\Coding\Szoftvertervezes\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
+C:\Users\Proty-laptop\Documents\DokPart\Programozas\QickMarkProject\QuickMark\QuickMarkWeb\quickmarkweb.client\obj\Debug\quickmarkweb.client.esproj.CoreCompileInputs.cache
