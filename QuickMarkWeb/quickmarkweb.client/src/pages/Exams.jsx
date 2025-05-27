@@ -38,7 +38,7 @@ const Exams = () => {
     fetchExams();
   }, []);
   const fetchExams = () => {
-    axios.get("/api/Exam/api/Exams")
+    axios.get("/api/Exam/exams")
       .then(res => {
         // Ha nem tömb, akkor üres tömböt adunk vissza
         setExams(Array.isArray(res.data) ? res.data : []);
@@ -131,10 +131,10 @@ const Exams = () => {
 
     try {
       if (isEditing && currentExam) {
-        await axios.put(`/api/Exam/edit/api/Exam/${currentExam.id}`, { id: currentExam.id, ...payload });
+        await axios.put(`/api/Exam/edit/exam/${currentExam.id}`, { id: currentExam.id, ...payload });
         toast("Vizsga módosítva!");
       } else {
-        await axios.post("/api/Exam/add/api/Exam", payload);
+        await axios.post("/api/Exam/add/exam", payload);
         toast("Vizsga hozzáadva!");
       }
       fetchExams();

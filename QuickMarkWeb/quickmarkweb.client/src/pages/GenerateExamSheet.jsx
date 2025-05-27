@@ -41,7 +41,7 @@ const GenerateExamSheets = () => {
   });
 
   useEffect(() => {
-    axios.get("/api/Exam/api/Exams")
+    axios.get("/api/Exam/exams")
       .then(res => {
         if (Array.isArray(res.data)) {
           setExamOptions(
@@ -66,7 +66,7 @@ const GenerateExamSheets = () => {
 
     try {
       // First, get the exam details (needed for backend)
-      const examRes = await axios.get(`/api/Exam/api/Exam/${data.examId}/generatesheets`);
+      const examRes = await axios.get(`/api/Exam/exam/${data.examId}/generatesheets`);
       const examDetails = examRes.data;
 
       // Prepare request payload
@@ -84,7 +84,7 @@ const GenerateExamSheets = () => {
       formData.append("examData", new Blob([JSON.stringify(payload)], { type: "application/json" }));
 
       const response = await axios.post(
-        `/api/Exam/api/Exam/${data.examId}/generatesheets`,
+        `/api/Exam/exam/${data.examId}/generatesheets`,
         formData,
         {
           responseType: "blob",
