@@ -31,11 +31,11 @@ def examGrading():
         result.update({"correctAnswers":exam["CorrectDB"]})
         
         #save to server
-        try:    #TODO: sendig json change to correct one
+        try:
             savetoserver = requests.post("https://127.0.0.1:7045/api/SaveResults/save", json=result, headers={'Content-Type': 'application/json'}, timeout=5, verify=False)
             savetoserver.raise_for_status()
         except requests.RequestException as err:
-            raise Exception(f"Save failed!, {str(err)}")
+            raise Exception(f"Save failed!, {str(err)}")#"""
         
         #Extra for Debug and Mobile
         """result.update({"questionDb":exam["QuestionDB"]})
@@ -46,21 +46,8 @@ def examGrading():
     except Exception as e:
         # Return any processing errors as JSON
         return jsonify({'Error': True, 'ErrorCode': str(e)}), 500       #DONE: Get GIFT from c# server with GET 127.0.0.1/api/Exam/exams/examID DONE #TODO: TEST
-                                                                        #TODO: Send Grade back to App and to C# /api/SaveResults/save
-    
-    """# Start the Python app as a background process
-    try:
-        # Replace with your app's command (sanitized to prevent injection)
-        cmd = "python3 /path/to/your_script.py"
-        process = subprocess.Popen(
-            shlex.split(cmd),
-            stdout=open('/path/to/app.log', 'w'),
-            stderr=subprocess.STDOUT
-        )
-        return jsonify({"status": "success", "pid": process.pid})
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500"""
-    
+                                                                        #DONE: Send Grade back to App and to C# /api/SaveResults/save
+   
 @app.route('/generate-pdf', methods=['POST'])
 def generate_pdf_endpoint():
     try:

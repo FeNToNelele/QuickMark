@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\proty-laptop\\documents\\dokpart\\programozas\\qickmarkproject\\quickmark\\quickmarkweb\\quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\proty-laptop\\documents\\dokpart\\programozas\\qickmarkproject\\quickmark\\quickmarkweb\\quickmarkweb.server\\controllers\\saveresultscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\saveresultscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,10 +39,6 @@
       "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\course\\newcourserequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\proty-laptop\\documents\\dokpart\\programozas\\qickmarkproject\\quickmark\\quickmarkweb\\quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|c:\\users\\proty-laptop\\documents\\dokpart\\programozas\\qickmarkproject\\quickmark\\quickmarkweb\\quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,24 +58,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SaveResultsController.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
               "ToolTip": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
               "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\SaveResultsController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T19:39:53.341Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Courses.jsx",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Courses.jsx",
               "RelativeDocumentMoniker": "quickmarkweb.client\\src\\pages\\Courses.jsx",
@@ -83,12 +83,11 @@
               "RelativeToolTip": "quickmarkweb.client\\src\\pages\\Courses.jsx",
               "ViewState": "AgIAAJkAAAAAAAAAAAAAAFIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-05-27T19:39:33.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T19:39:33.378Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ExamController.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\ExamController.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
@@ -96,12 +95,11 @@
               "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\ExamController.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAQwDMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T16:17:33.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-25T16:17:33.859Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "NewQuestionnaireRequest.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
@@ -109,12 +107,11 @@
               "RelativeToolTip": "QuickMarkWeb.Shared\\Questionnaire\\NewQuestionnaireRequest.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T16:02:14.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-25T16:02:14.495Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "NewCourseRequest.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Shared\\Course\\NewCourseRequest.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\Course\\NewCourseRequest.cs",
@@ -126,19 +123,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Data\\AppDbContext.cs",
               "RelativeToolTip": "QuickMarkWeb.Server\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAqwCYAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAADwv18AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T13:24:59.82Z"
+              "WhenOpened": "2025-05-23T13:24:59.82Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Mappings.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Helper\\Mappings.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Helper\\Mappings.cs",
@@ -146,12 +144,11 @@
               "RelativeToolTip": "QuickMarkWeb.Server\\Helper\\Mappings.cs",
               "ViewState": "AgIAAGIAAAAAAAAAAAAjwHAAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T13:12:18.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T13:12:18.42Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "QuestionnaireController.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
@@ -159,12 +156,11 @@
               "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\QuestionnaireController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T13:11:23.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T13:11:23.339Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "GIFTController.cs",
               "DocumentMoniker": "C:\\Users\\Proty-laptop\\Documents\\DokPart\\Programozas\\QickMarkProject\\QuickMark\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
               "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
@@ -172,8 +168,7 @@
               "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\GIFTController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T09:57:44.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T09:57:44.196Z"
             },
             {
               "$type": "Document",

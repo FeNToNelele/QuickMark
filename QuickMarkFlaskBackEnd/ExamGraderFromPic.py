@@ -91,8 +91,8 @@ class ExamProcessor:
         y2 = int(warped.shape[0] - 0.1 * warped.shape[0])
         region = bin_img[y1-50:y2, x1:x2]           #TODO: split page, double column #magic numbers NEED more testing, test13 has it.
 
-        cv2.imshow("wtf", region)
-        cv2.waitKey(0)
+        """cv2.imshow("wtf", region)
+        cv2.waitKey(0)"""
 
         contours, _ = cv2.findContours(region, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         boxes = []
@@ -109,7 +109,7 @@ class ExamProcessor:
                     boxes.append((x, y, bw, bh))
         boxes.sort(key=lambda b: (b[1], b[0]))
 
-        #WRITE TO IMG START
+        """#WRITE TO IMG START
         annotated = warped.copy()
         for mid, pt in markers.items():
             cv2.circle(annotated, (int(pt[0]), int(pt[1])), 10, (0, 0, 255), -1)
@@ -194,7 +194,9 @@ class ExamProcessor:
         examiner_id = qr_data[0]
         neptuncode = qr_data[2]
 
-        examid = 1 #TODO: ideiglenes
+        #For testing only
+        """examid = 1 #TODO: ideiglenes
+        examiner_id = "string#"""
 
         gift_json = self.get_gift(examid)
         gift_data = gift_json["questionnaire"]["giftFile"]
