@@ -14,6 +14,7 @@ import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
 
 const gradeLabels = ["2", "3", "4", "5"];
 
@@ -28,29 +29,47 @@ const Exams = () => {
   // Fetch courses and question banks on mount
   useEffect(() => {
     axios.get("/api/Course")
-      .then(res => setCourses(Array.isArray(res.data) ? res.data : []))
-      .catch(() => toast("Kurzusok betöltése sikertelen!"));
+      .then(res => {
+        console.log("Courses loaded:", res.data);
+        setCourses(Array.isArray(res.data) ? res.data : [])
+      })
+      .catch((err) => {
+        console.error("Error loading courses:", err);
+        toast("Kurzusok betöltése sikertelen!");
+      });
 
     axios.get("/api/Questionnaire")
-      .then(res => setQuestionBanks(Array.isArray(res.data) ? res.data : []))
-      .catch(() => toast("Kérdésbankok betöltése sikertelen!"));
+      .then(res => {
+        console.log("Question banks loaded:", res.data);
+        setQuestionBanks(Array.isArray(res.data) ? res.data : [])
+      })
+      .catch((err) => {
+        console.error("Error loading question banks:", err);
+        toast("Kérdésbankok betöltése sikertelen!");
+      });
 
     fetchExams();
   }, []);
+
   const fetchExams = () => {
     axios.get("/api/Exam/exams")
       .then(res => {
+        console.log("Exams loaded:", res.data);
         // Ha nem tömb, akkor üres tömböt adunk vissza
         setExams(Array.isArray(res.data) ? res.data : []);
       })
-      .catch(() => toast("Vizsgák betöltése sikertelen!"));
+      .catch((err) => {
+        console.error("Error loading exams:", err);
+        toast("Vizsgák betöltése sikertelen!");
+      });
   };
+
   // Form state
   const form = useForm({
     defaultValues: {
       courseId: "",
       questionnaireId: "",
-      heldAt: "",
+      heldAt: new Date(),
       examType: "",
       questionAmount: "",
       passingScore: "",
@@ -72,7 +91,7 @@ const Exams = () => {
       form.reset({
         courseId: exam.courseId,
         questionnaireId: exam.questionnaireId,
-        heldAt: exam.heldAt,
+        heldAt: new Date(exam.heldAt),
         examType: exam.examType,
         questionAmount: exam.questionAmount,
         passingScore: exam.examType === "beugró" ? exam.correctLimit : "",
@@ -82,7 +101,7 @@ const Exams = () => {
       form.reset({
         courseId: "",
         questionnaireId: "",
-        heldAt: "",
+        heldAt: new Date(),
         examType: "",
         questionAmount: "",
         passingScore: "",
@@ -100,7 +119,7 @@ const Exams = () => {
 
   // Save (add or edit)
   const handleSave = async (data) => {
-    if (!data.courseId || !data.questionnaireId || !data.heldAt || !data.examType || !data.questionAmount) {
+    if (!data.courseId || !data.questionnaireId || !data.examType || !data.questionAmount) {
       toast("Minden mező kitöltése kötelező!");
       return;
     }
@@ -122,38 +141,49 @@ const Exams = () => {
 
     const payload = {
       courseId: data.courseId,
-      questionnaireId: data.questionnaireId,
-      heldAt: data.heldAt,
+      questionnaireId: Number(data.questionnaireId),
+      heldAt: data.heldAt.toISOString(),
       examType: data.examType,
-      questionAmount: data.questionAmount,
+      questionAmount: Number(data.questionAmount),
       correctLimit,
     };
 
+    console.log("Saving exam with payload:", payload);
+
     try {
       if (isEditing && currentExam) {
-        await axios.put(`/api/Exam/edit/exam/${currentExam.id}`, { id: currentExam.id, ...payload });
+        await axios.put(`/api/Exam/${currentExam.id}`, { id: currentExam.id, ...payload });
         toast("Vizsga módosítva!");
       } else {
-        await axios.post("/api/Exam/add/exam", payload);
+        await axios.post("/api/Exam", payload);
         toast("Vizsga hozzáadva!");
       }
       fetchExams();
       closeDialog();
-    } catch {
-      toast("Mentés sikertelen!");
+    } catch (error) {
+      console.error("Error saving exam:", error);
+      toast("Mentés sikertelen: " + (error.response?.data || error.message));
     }
   };
 
-  // Delete exam (no endpoint, just remove locally)
-  const handleDelete = (id) => {
-    setExams((prev) => prev.filter((e) => e.id !== id));
-    toast("Vizsga törölve!");
-    // If you have a DELETE endpoint, call it here
-    // await axios.delete(`/api/Exam/delete/api/Exam/${id}`);
-    // fetchExams();
+  // Delete exam
+  const handleDelete = async (id) => {
+    if (!confirm("Biztosan törölni szeretnéd ezt a vizsgát?")) {
+      return;
+    }
+    
+    try {
+      await axios.delete(`/api/Exam/${id}`);
+      toast("Vizsga törölve!");
+      fetchExams();
+    } catch (error) {
+      console.error("Error deleting exam:", error);
+      setExams((prev) => prev.filter((e) => e.id !== id));
+      toast("Törlés sikertelen: " + (error.response?.data || error.message));
+    }
   };
 
-  // Helper for displaying course/api/Questionnaire names
+  // Helper for displaying course/questionnaire names
   const getCourseName = (code) =>
     Array.isArray(courses)
       ? courses.find((c) => c.code === code)?.name || code
@@ -166,10 +196,11 @@ const Exams = () => {
 
   return (
     <div className="p-6">
-      <h1 className="heading-primary mb-4">Vizsgák kezelése</h1>
+      <h1 className="text-3xl font-bold mb-4">Vizsgák kezelése</h1>
       <Button onClick={() => openDialog()} className="mb-4">
         Új vizsga létrehozása
       </Button>
+
       <Table>
         <TableHeader>
           <TableRow>
@@ -196,7 +227,7 @@ const Exams = () => {
                 {exam.examType === "beugró"
                   ? `Sikeres: ${exam.correctLimit} jó válasz`
                   : gradeLabels
-                      .map((g, i) => `${g}: ${exam.correctLimit.split(";")[i] || "-"}`)
+                      .map((g, i) => `${g}: ${exam.correctLimit?.split(";")[i] || "-"}`)
                       .join(", ")}
               </TableCell>
               <TableCell>
@@ -209,12 +240,19 @@ const Exams = () => {
               </TableCell>
             </TableRow>
           ))}
+          {exams.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={7} className="text-center py-4">
+                Nincsenek még vizsgák
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
 
       {/* Add/Edit Exam Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>{isEditing ? "Vizsga szerkesztése" : "Új vizsga létrehozása"}</DialogTitle>
           </DialogHeader>
@@ -304,13 +342,13 @@ const Exams = () => {
                               {questionBanks.map((qb) => (
                                 <CommandItem
                                   key={qb.id}
-                                  value={qb.id}
+                                  value={String(qb.id)}
                                   onSelect={() => field.onChange(qb.id)}
                                 >
                                   <Check
                                     className={cn(
                                       "mr-2 h-4 w-4",
-                                      field.value === qb.id ? "opacity-100" : "opacity-0"
+                                      String(field.value) === String(qb.id) ? "opacity-100" : "opacity-0"
                                     )}
                                   />
                                   {qb.label}
@@ -339,7 +377,7 @@ const Exams = () => {
                           <Button
                             variant={"outline"}
                             className={cn(
-                              "w-[240px] pl-3 text-left font-normal",
+                              "w-full pl-3 text-left font-normal",
                               !field.value && "text-muted-foreground"
                             )}
                           >
@@ -357,9 +395,6 @@ const Exams = () => {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) =>
-                            date < new Date() || date > new Date("2100-01-01")
-                          }
                           initialFocus
                         />
                       </PopoverContent>
@@ -440,7 +475,7 @@ const Exams = () => {
                         type="number"
                         min={1}
                         value={field.value || ""}
-                        onChange={field.onChange}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
                         required
                       />
                     </FormControl>
@@ -462,7 +497,7 @@ const Exams = () => {
                           type="number"
                           min={1}
                           value={field.value || ""}
-                          onChange={field.onChange}
+                          onChange={(e) => field.onChange(Number(e.target.value))}
                           required
                         />
                       </FormControl>
@@ -489,7 +524,7 @@ const Exams = () => {
                               onChange={(e) =>
                                 field.onChange({
                                   ...field.value,
-                                  [grade]: e.target.value,
+                                  [grade]: Number(e.target.value),
                                 })
                               }
                               required
