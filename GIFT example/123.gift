@@ -1,0 +1,122 @@
+::Example Test::  
+Jelölje meg a helyes válasz rubrikáját! Csak egy helyes válasz lehetséges.
+
+// Question 1
+::Q1::Where is the capital of France? { 
+    =Paris 
+    ~Rome 
+    ~London 
+    ~Berlin 
+}
+
+// Question 2
+::Q2::What is 5 + 7? { 
+    ~%-100%10 
+    =12 
+    ~14 
+    ~11 
+}
+
+// Question 3
+::Q3::Which planet is closest to the Sun? {
+    ~Earth
+    =Mercury
+    ~Venus
+    ~Mars
+}
+
+// Question 4
+::Q4::Who wrote “Hamlet”? {
+    ~Charles Dickens
+    ~Jane Austen
+    =William Shakespeare
+    ~Mark Twain
+}
+
+// Question 5
+::Q5::What color do you get by mixing red and white? {
+    =Pink
+    ~Purple
+    ~Orange
+    ~Brown
+}
+
+// Question 6
+::Q6::Which gas do plants absorb from the atmosphere? {
+    =Carbon dioxide
+    ~Oxygen
+    ~Nitrogen
+    ~Hydrogen
+}
+
+// Question 7
+::Q7::What is the chemical symbol for water? {
+    ~CO2
+    =H2O
+    ~O2
+    ~NaCl
+}
+
+// Question 8
+::Q8::How many continents are there on Earth? {
+    =7
+    ~5
+    ~6
+    ~8
+}
+
+// Question 9
+::Q9::What is the largest mammal? {
+    =Blue whale
+    ~Elephant
+    ~Giraffe
+    ~Hippopotamus
+}
+
+// Question 10
+::Q10::Which element has the atomic number 1? {
+    =Hydrogen
+    ~Helium
+    ~Lithium
+    ~Oxygen
+}
+
+// Question 11
+::Q11::What is the square root of 64? {
+    =8
+    ~6
+    ~7
+    ~9
+}
+
+// Question 12
+::Q12::What is the currency of Japan? {
+    =Yen
+    ~Dollar
+    ~Euro
+    ~Won
+}
+
+// Question 13
+::Q13::Which ocean is the largest? {
+    =Pacific Ocean
+    ~Atlantic Ocean
+    ~Indian Ocean
+    ~Arctic Ocean
+}
+
+// Question 14
+::Q14::What is the boiling point of water at sea level (°C)? {
+    =100
+    ~90
+    ~80
+    ~70
+}
+
+// Question 15
+::Q15::Who developed the theory of relativity? {
+    ~Isaac Newton
+    =Albert Einstein
+    ~Galileo Galilei
+    ~Nikola Tesla
+}

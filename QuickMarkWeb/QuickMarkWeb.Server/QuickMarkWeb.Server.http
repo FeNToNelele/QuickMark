@@ -1,0 +1,6 @@
+@QuickMarkWeb.Server_HostAddress = http://localhost:5023
+
+GET {{QuickMarkWeb.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

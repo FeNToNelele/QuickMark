@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./QuickMarkWeb
+      dockerfile: QuickMarkWeb.Server/Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production   #added
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=quickmark;Username=postgres;Password=password
+      - JWT__Secret=K3yThat!sThirtyTwoCharactersLong
+      - JWT__ValidIssuer=quickmark-api
+      - JWT__ValidAudience=quickmark-client
+
+  frontend:
+    build:
+      context: ./QuickMarkWeb/quickmarkweb.client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:80
+      - VITE_FLASK_API_URL=http://flask:8000
+
+  flask:
+    build:
+      context: ./QuickMarkFlaskBackEnd
+    ports:
+      - "8000:8000"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:17
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: quickmark
+
+volumes:
+  dbdata:

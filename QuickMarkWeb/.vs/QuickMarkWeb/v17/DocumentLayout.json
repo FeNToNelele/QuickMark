@@ -1,0 +1,225 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\QuickMark-main\\QuickMarkWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.client\\src\\lib\\axios.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\lib\\axios.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.client\\src\\lib\\new folder\\axios_old.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\lib\\new folder\\axios_old.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.client\\src\\components\\new folder\\protectedroute_old.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\components\\new folder\\protectedroute_old.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.client\\src\\components\\protectedroute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\components\\protectedroute.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.client\\src\\pages\\courses.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\pages\\courses.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.server\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.shared\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2D70932-704B-A99B-E1B2-2B258E94350D}|QuickMarkWeb.Shared\\Shared.csproj|solutionrelative:quickmarkweb.shared\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.client\\src\\pages\\examiners.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{2DC4A559-CC06-D62A-811F-57FC9BF90011}|quickmarkweb.client\\quickmarkweb.client.esproj|solutionrelative:quickmarkweb.client\\src\\pages\\examiners.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|d:\\quickmark-main\\quickmarkweb\\quickmarkweb.server\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{549EE7D0-EA38-45BA-8C02-371A46A4C998}|QuickMarkWeb.Server\\QuickMarkWeb.Server.csproj|solutionrelative:quickmarkweb.server\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 236,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "axios_old.js",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\New folder\\axios_old.js",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\lib\\New folder\\axios_old.js",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\New folder\\axios_old.js",
+              "RelativeToolTip": "quickmarkweb.client\\src\\lib\\New folder\\axios_old.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-04T20:19:24.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "axios.js",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\axios.js",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\lib\\axios.js",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\lib\\axios.js",
+              "RelativeToolTip": "quickmarkweb.client\\src\\lib\\axios.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-04T20:19:12.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProtectedRoute.jsx",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\components\\ProtectedRoute.jsx",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\components\\ProtectedRoute.jsx",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\components\\ProtectedRoute.jsx",
+              "RelativeToolTip": "quickmarkweb.client\\src\\components\\ProtectedRoute.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-06-04T20:13:58.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProtectedRoute_old.jsx",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\components\\New folder\\ProtectedRoute_old.jsx",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\components\\New folder\\ProtectedRoute_old.jsx",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\components\\New folder\\ProtectedRoute_old.jsx",
+              "RelativeToolTip": "quickmarkweb.client\\src\\components\\New folder\\ProtectedRoute_old.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-06-04T20:13:45.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Courses.jsx",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Courses.jsx",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\pages\\Courses.jsx",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Courses.jsx",
+              "RelativeToolTip": "quickmarkweb.client\\src\\pages\\Courses.jsx",
+              "ViewState": "AgIAALsAAAAAAAAAAAAAANMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-06-04T07:34:15.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\CourseController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowC4AAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T06:44:15.711Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 164,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Controllers\\UserController.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAYwJkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T21:41:49.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Examiners.jsx",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Examiners.jsx",
+              "RelativeDocumentMoniker": "quickmarkweb.client\\src\\pages\\Examiners.jsx",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\quickmarkweb.client\\src\\pages\\Examiners.jsx",
+              "RelativeToolTip": "quickmarkweb.client\\src\\pages\\Examiners.jsx",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAEcAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-06-04T06:55:17.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T17:46:19.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Shared\\User\\UserDTO.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Shared\\User\\UserDTO.cs",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Shared\\User\\UserDTO.cs",
+              "RelativeToolTip": "QuickMarkWeb.Shared\\User\\UserDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T17:48:15.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\User.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Models\\User.cs",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\User.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T17:57:36.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Exam.cs",
+              "DocumentMoniker": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Exam.cs",
+              "RelativeDocumentMoniker": "QuickMarkWeb.Server\\Models\\Exam.cs",
+              "ToolTip": "D:\\QuickMark-main\\QuickMarkWeb\\QuickMarkWeb.Server\\Models\\Exam.cs",
+              "RelativeToolTip": "QuickMarkWeb.Server\\Models\\Exam.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T17:58:38.086Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# syntax=docker/dockerfile:1
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+RUN apt-get update && apt-get install -y nodejs npm
+
+COPY QuickMarkWeb.Server/QuickMarkWeb.Server.csproj ./QuickMarkWeb.Server/
+COPY QuickMarkWeb.Shared/Shared.csproj ./QuickMarkWeb.Shared/
+COPY quickmarkweb.client/quickmarkweb.client.esproj ./quickmarkweb.client/
+
+RUN dotnet restore QuickMarkWeb.Server/QuickMarkWeb.Server.csproj
+
+COPY QuickMarkWeb.Server/ ./QuickMarkWeb.Server/
+COPY QuickMarkWeb.Shared/ ./QuickMarkWeb.Shared/
+COPY quickmarkweb.client/ ./quickmarkweb.client/
+
+WORKDIR /src/QuickMarkWeb.Server
+
+RUN dotnet publish -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "quickmarkweb.server.dll"]
