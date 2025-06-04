@@ -1,25 +1,51 @@
-import axios from 'axios';
+import axios from "axios";
 
+// Create an Axios instance with custom config
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || "https://localhost:7045",
-    withCredentials: true,
-    //headers: {
-    //    'Content-Type' : 'application/json'
-    //}
+  baseURL: import.meta.env.VITE_API_URL || "",
+  timeout: 30000, // 30 seconds
+  // Comment this out if issues arise with CORS
+  headers: {
+    "Content-Type": "application/json"
+  }
 });
 
-instance.interceptors.request.use((config) => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-    }
-    else {
-        console.warn("No auth token available");
-    }
+// Add request interceptor
+instance.interceptors.request.use(
+  (config) => {
+    console.log(`Request: ${config.method.toUpperCase()} ${config.baseURL}${config.url}`, config);
     return config;
-}, (error) => {
+  },
+  (error) => {
+    console.error("Request error:", error);
     return Promise.reject(error);
-}
+  }
+);
+
+// Add response interceptor
+instance.interceptors.response.use(
+  (response) => {
+    console.log(`Response from ${response.config.url}:`, response);
+    return response;
+  },
+  (error) => {
+    console.error("Response error:", error);
+    
+    if (error.response) {
+      // Server responded with non-2xx status
+      console.error("Error data:", error.response.data);
+      console.error("Error status:", error.response.status);
+      console.error("Error headers:", error.response.headers);
+    } else if (error.request) {
+      // Request was made but no response received
+      console.error("No response received:", error.request);
+    } else {
+      // Something happened in setting up the request
+      console.error("Request setup error:", error.message);
+    }
+    
+    return Promise.reject(error);
+  }
 );
 
 export default instance;
